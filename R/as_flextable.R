@@ -26,7 +26,13 @@
 #' 
 #' @examples
 #' as_flextable_dataframe(warpbreaks, hline_i = ~ tension)
-#' as_flextable_dataframe(swiss, highlight_j = 3L)
+#' 
+#' library(survival)
+#' aml2 = within(aml, expr = {
+#'   edp = Surv(time, status)
+#'   time = status = NULL
+#' })
+#' as_flextable_dataframe(aml2, hline_i = ~ x)
 #' 
 #' @importFrom flextable autofit flextable highlight hline vline set_caption
 #' @export
@@ -38,8 +44,6 @@ as_flextable_dataframe <- function(
     highlight_j = attr(x, which = 'highlight_j', exact = TRUE) %||% integer(0L),
     ...
 ) {
-  
-  x <- format2flextable(x)
   
   nr <- .row_names_info(x, type = 2L)
   
@@ -57,10 +61,10 @@ as_flextable_dataframe <- function(
   if (!length(hline_i)) hline_i <- integer(0L)
   
   if (!is.integer(hline_i)) stop('`hline_i` must be convertible to integer')
-  
   hline_i <- setdiff(hline_i, nr)
   
   x |>
+    format2flextable() |>
     flextable() |>
     autofit(part = 'all') |>
     set_caption(caption = caption) |>

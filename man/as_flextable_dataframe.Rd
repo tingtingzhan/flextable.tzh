@@ -37,6 +37,12 @@ Name clash \code{flextable:::as_flextable.data.frame}.
 }
 \examples{
 as_flextable_dataframe(warpbreaks, hline_i = ~ tension)
-as_flextable_dataframe(swiss, highlight_j = 3L)
+
+library(survival)
+aml2 = within(aml, expr = {
+  edp = Surv(time, status)
+  time = status = NULL
+})
+as_flextable_dataframe(aml2, hline_i = ~ x)
 
 }
