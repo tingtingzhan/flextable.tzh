@@ -1,0 +1,107 @@
+
+
+
+#' @title as_flextable.array
+#' 
+#' @description ..
+#' 
+#' @param x a \link[base]{array}
+#' 
+#' @param row.title \link[base]{character} scalar
+#' 
+#' @param caption \link[base]{character} scalar
+#' 
+#' @param hl,vl ..
+#' 
+#' @param ... ..
+#' 
+#' @examples
+#' library(flextable)
+#' as_flextable(VADeaths)
+#' as_flextable(occupationalStatus) # ?flextable:::as_flextable.table
+#' as_flextable.array(occupationalStatus)
+#' @importFrom flextable as_flextable flextable autofit hline vline hline_top add_header_row merge_v merge_h align fix_border_issues bold set_caption
+#' @importFrom officer fp_border
+#' @export as_flextable.array
+#' @export
+as_flextable.array <- function(
+    x, 
+    row.title = if (has_DNM[1L]) DNM[1L] else ' ', 
+    caption = attr(x, which = 'caption', exact = TRUE),
+    hl = integer(0L), vl = integer(0L),
+    ...
+) {
+  
+  x_orig <- x # just in case
+  if (length(dmx <- dim(x)) == 1L) {
+    x <- array(x_orig, dim = c(1L, dmx), dimnames = c(list(NULL), dimnames(x_orig)))
+    dmx <- dim(x)
+  }
+  nd <- length(dmx)
+  
+  x0 <- unclass(x) # e.g. 'table', 'noquote'
+  # ?base::as.data.frame.table is not what I want
+  if (length(dnm <- dimnames(x0))) {
+    for (i in seq_len(nd)) {
+      if (length(dnm[[i]]) && any(rna <- is.na(dnm[[i]]))) dnm[[i]][rna] <- '<NA>'
+    }
+    dimnames(x0) <- dnm
+  }
+  
+  if (!length(DNM <- names(dnm))) DNM <- character(length = nd)
+  # empty names(dimnames) will be zchar (R 4.1.1)
+  
+  if (nd == 3L) {
+    return(lapply(seq_len(dmx[[3L]]), FUN = function(i) {
+      ix <- array(x0[, , i, drop = TRUE], dim = dmx[1:2], dimnames = dnm[1:2])
+      as_flextable.array(ix, caption = sprintf(fmt = '%s = %s', DNM[3L], dnm[[3L]][i]))
+    }))
+  }
+  
+  if (!is.matrix(x0)) stop('input cannot be turned into matrix') # before 2023-08-09, should be typo
+  
+  dnm <- dimnames(x0)
+  
+  # Cohen's kappa
+  # see [as_flextable.xtabs]
+  
+  x1 <- as.data.frame.matrix(x0, make.names = FALSE, stringsAsFactors = FALSE)
+  
+  has_DNM <- nzchar(DNM)
+  
+  x2 <- data.frame(' ' = row.names.data.frame(x1), x1, row.names = NULL, check.names = FALSE, fix.empty.names = FALSE, stringsAsFactors = FALSE)
+  #if (has_DNM[1L]) names(x2)[1L] <- DNM[1L]
+  names(x2)[1L] <- row.title
+  
+  vl <- if (length(vl)) {
+    # row.names becomes col-1
+    # but never put a vline at the right-end of table
+    setdiff(x = vl+1L, y = length(x2)) 
+  } else integer()
+  
+  border_hard_ <- fp_border(width = 1.5, color = 'gray40')
+  # *looks* like default border used in ?flextable::flextable
+  # tzh does *not* know how to find out for sure, for now
+  border_soft_ <- fp_border(width = .5, color = 'gray40')
+  
+  y0 <- x2 |> 
+    flextable() |>
+    autofit(part = 'all') |>
+    hline(i = hl) |>
+    vline(j = vl) |>
+    vline(j = 1L, border = border_hard_) |>
+    set_caption(caption = caption)
+  
+  if (!has_DNM[2L]) return(y0)
+  
+  y0 |> 
+    add_header_row(top = TRUE, values = c(row.title, rep(DNM[2L], times = dmx[2L]))) |>
+    merge_h(part = 'header') |>
+    merge_v(part = 'header') |>
+    align(align = 'center', part = 'header') |>
+    fix_border_issues() #|> # inspired by ?flextable::theme_vanilla
+  #vline(j = 1L) |> # this cannot be ?flextable::fix_border_issues -ed
+  #hline_top(part = 'header') |> # no longer needed
+  #bold(bold = TRUE, part = 'header') # no longer needed
+  
+}
