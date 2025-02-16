@@ -31,7 +31,6 @@ Function \link{as_flextable.array} returns a \link[flextable]{flextable}.
 ..
 }
 \examples{
-library(flextable)
 as_flextable(VADeaths)
 as_flextable(occupationalStatus) # ?flextable:::as_flextable.table
 as_flextable.array(occupationalStatus)
