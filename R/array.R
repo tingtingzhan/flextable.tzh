@@ -15,6 +15,9 @@
 #' 
 #' @param ... ..
 #' 
+#' @returns 
+#' Function [as_flextable.array] returns a \link[flextable]{flextable}.
+#' 
 #' @examples
 #' library(flextable)
 #' as_flextable(VADeaths)
@@ -105,3 +108,23 @@ as_flextable.array <- function(
   #bold(bold = TRUE, part = 'header') # no longer needed
   
 }
+
+
+
+
+#' @title as_flextable.noquote
+#' 
+#' @param x a \link[base]{noquote} object
+#' 
+#' @param ... additional parameters of function [as_flextable.array]
+#' 
+#' @returns 
+#' Function [as_flextable.noquote] returns a \link[flextable]{flextable}.
+#' 
+#' @export as_flextable.noquote
+#' @export
+as_flextable.noquote <- function(x, ...) {
+  if (!is.array(x)) stop('input must be \'array\'')
+  as_flextable.array(unclass(x), ...)
+}
+

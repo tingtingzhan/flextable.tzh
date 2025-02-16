@@ -24,6 +24,9 @@
 
 \item{...}{..}
 }
+\value{
+Function \link{as_flextable.array} returns a \link[flextable]{flextable}.
+}
 \description{
 ..
 }
