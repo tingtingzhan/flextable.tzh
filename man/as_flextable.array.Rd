@@ -8,8 +8,8 @@
   x,
   row.title = if (has_DNM[1L]) DNM[1L] else " ",
   caption = attr(x, which = "caption", exact = TRUE),
-  hl = integer(0L),
-  vl = integer(0L),
+  hline_i = integer(0L),
+  vline_j = integer(0L),
   ...
 )
 }
@@ -20,7 +20,7 @@
 
 \item{caption}{\link[base]{character} scalar}
 
-\item{hl, vl}{..}
+\item{hline_i, vline_j}{..}
 
 \item{...}{..}
 }

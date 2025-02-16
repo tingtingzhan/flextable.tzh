@@ -11,7 +11,7 @@
 #' 
 #' @param caption \link[base]{character} scalar
 #' 
-#' @param hl,vl ..
+#' @param hline_i,vline_j ..
 #' 
 #' @param ... ..
 #' 
@@ -30,7 +30,7 @@ as_flextable.array <- function(
     x, 
     row.title = if (has_DNM[1L]) DNM[1L] else ' ', 
     caption = attr(x, which = 'caption', exact = TRUE),
-    hl = integer(0L), vl = integer(0L),
+    hline_i = integer(0L), vline_j = integer(0L),
     ...
 ) {
   
@@ -75,10 +75,10 @@ as_flextable.array <- function(
   #if (has_DNM[1L]) names(x2)[1L] <- DNM[1L]
   names(x2)[1L] <- row.title
   
-  vl <- if (length(vl)) {
+  vline_j <- if (length(vline_j)) {
     # row.names becomes col-1
     # but never put a vline at the right-end of table
-    setdiff(x = vl+1L, y = length(x2)) 
+    setdiff(x = vline_j+1L, y = length(x2)) 
   } else integer()
   
   border_hard_ <- fp_border(width = 1.5, color = 'gray40')
@@ -89,8 +89,8 @@ as_flextable.array <- function(
   y0 <- x2 |> 
     flextable() |>
     autofit(part = 'all') |>
-    hline(i = hl) |>
-    vline(j = vl) |>
+    hline(i = hline_i) |>
+    vline(j = vline_j) |>
     vline(j = 1L, border = border_hard_) |>
     set_caption(caption = caption)
   
