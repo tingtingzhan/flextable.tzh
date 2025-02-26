@@ -22,13 +22,14 @@ as_flextable.ftable <- function(x, ...) {
   
   atr <- attributes(x)
   nr <- length(atr$row.vars) # lowest group
+  rseq <- seq_len(nr)
   
   xf <- format(x, quote = FALSE, method = 'compact', lsep = '', ...) # ?stats:::format.ftable
   xf[] <- trimws(xf)
   cnm <- xf[1L, , drop = TRUE]
   xf <- xf[-1L, , drop = FALSE]
   colnames(xf) <- cnm
-  xf[,1:3][!nzchar(xf[,1:3])] <- NA_character_
+  xf[,rseq][!nzchar(xf[,rseq])] <- NA_character_
 
   h_i <- seq.int(from = 0, to = nrow(xf), by = length(atr$row.vars[[nr]]))
   
