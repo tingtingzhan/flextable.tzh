@@ -7,7 +7,6 @@
 \method{as_flextable}{array}(
   x,
   row.title = if (has_DNM[1L]) DNM[1L] else " ",
-  caption = attr(x, which = "caption", exact = TRUE),
   hline_i = integer(0L),
   vline_j = integer(0L),
   ...
@@ -17,8 +16,6 @@
 \item{x}{a \link[base]{array}}
 
 \item{row.title}{\link[base]{character} scalar}
-
-\item{caption}{\link[base]{character} scalar}
 
 \item{hline_i, vline_j}{..}
 
@@ -31,7 +28,10 @@ Function \link{as_flextable.array} returns a \link[flextable]{flextable}.
 ..
 }
 \examples{
-as_flextable(VADeaths)
+as_flextable(VADeaths) # 'matrix'
 as_flextable(occupationalStatus) # ?flextable:::as_flextable.table
 as_flextable.array(occupationalStatus)
+
+tryCatch(as_flextable(UCBAdmissions), error = identity) # ?flextable:::as_flextable.table
+tryCatch(as_flextable.array(UCBAdmissions), error = identity)
 }

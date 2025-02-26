@@ -9,8 +9,6 @@
 #' 
 #' @param row.title \link[base]{character} scalar
 #' 
-#' @param caption \link[base]{character} scalar
-#' 
 #' @param hline_i,vline_j ..
 #' 
 #' @param ... ..
@@ -19,17 +17,19 @@
 #' Function [as_flextable.array] returns a \link[flextable]{flextable}.
 #' 
 #' @examples
-#' as_flextable(VADeaths)
+#' as_flextable(VADeaths) # 'matrix'
 #' as_flextable(occupationalStatus) # ?flextable:::as_flextable.table
 #' as_flextable.array(occupationalStatus)
-#' @importFrom flextable as_flextable flextable autofit hline vline hline_top add_header_row merge_v merge_h align fix_border_issues bold set_caption
+#' 
+#' tryCatch(as_flextable(UCBAdmissions), error = identity) # ?flextable:::as_flextable.table
+#' tryCatch(as_flextable.array(UCBAdmissions), error = identity)
+#' @importFrom flextable as_flextable flextable autofit hline vline hline_top add_header_row merge_v merge_h align fix_border_issues bold
 #' @importFrom officer fp_border
 #' @export as_flextable.array
 #' @export
 as_flextable.array <- function(
     x, 
-    row.title = if (has_DNM[1L]) DNM[1L] else ' ', 
-    caption = attr(x, which = 'caption', exact = TRUE),
+    row.title = if (has_DNM[1L]) DNM[1L] else ' ',
     hline_i = integer(0L), vline_j = integer(0L),
     ...
 ) {
@@ -53,11 +53,14 @@ as_flextable.array <- function(
   if (!length(DNM <- names(dnm))) DNM <- character(length = nd)
   # empty names(dimnames) will be zchar (R 4.1.1)
   
-  if (nd == 3L) {
-    return(lapply(seq_len(dmx[[3L]]), FUN = function(i) {
-      ix <- array(x0[, , i, drop = TRUE], dim = dmx[1:2], dimnames = dnm[1:2])
-      as_flextable.array(ix, caption = sprintf(fmt = '%s = %s', DNM[3L], dnm[[3L]][i]))
-    }))
+  if (nd > 2L) {
+    # this does not work well with ?rmarkdown::render
+    #return(lapply(seq_len(dmx[[3L]]), FUN = function(i) {
+    #  ix <- array(x0[, , i, drop = TRUE], dim = dmx[1:2], dimnames = dnm[1:2])
+    #  as_flextable.array(ix) |> flextable::set_caption(caption = sprintf(fmt = '%s = %s', DNM[3L], dnm[[3L]][i]))
+    #}))
+    # end of not working well with ?rmarkdown::render
+    stop('array must have maximum two dimensions') # following ?flextable:::as_flextable.table
   }
   
   if (!is.matrix(x0)) stop('input cannot be turned into matrix') # before 2023-08-09, should be typo
@@ -65,7 +68,7 @@ as_flextable.array <- function(
   dnm <- dimnames(x0)
   
   # Cohen's kappa
-  # see [as_flextable.xtabs]
+  # was in [as_flextable.xtabs], but no longer
   
   x1 <- as.data.frame.matrix(x0, make.names = FALSE, stringsAsFactors = FALSE)
   
@@ -91,8 +94,7 @@ as_flextable.array <- function(
     autofit(part = 'all') |>
     hline(i = hline_i) |>
     vline(j = vline_j) |>
-    vline(j = 1L, border = border_hard_) |>
-    set_caption(caption = caption)
+    vline(j = 1L, border = border_hard_)
   
   if (!has_DNM[2L]) return(y0)
   

@@ -6,7 +6,6 @@
 \usage{
 as_flextable_dataframe(
   x,
-  caption = NULL,
   hline_i = integer(0L),
   vline_j = attr(x, which = "vline_j", exact = TRUE) \%||\% integer(0L),
   highlight_j = attr(x, which = "highlight_j", exact = TRUE) \%||\% integer(0L),
@@ -15,8 +14,6 @@ as_flextable_dataframe(
 }
 \arguments{
 \item{x}{\link[base]{data.frame}}
-
-\item{caption}{..}
 
 \item{hline_i}{..}
 
