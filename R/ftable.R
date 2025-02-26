@@ -28,16 +28,13 @@ as_flextable.ftable <- function(x, ...) {
   cnm <- xf[1L, , drop = TRUE]
   xf <- xf[-1L, , drop = FALSE]
   colnames(xf) <- cnm
+  xf[,1:3][!nzchar(xf[,1:3])] <- NA_character_
 
   h_i <- seq.int(from = 0, to = nrow(xf), by = length(atr$row.vars[[nr]]))
   
-  xf2 <- as.data.frame.matrix(xf)
-  xf2[] <- lapply(X = xf2, FUN = function(i) {
-    i[!nzchar(i)] <- NA_character_
-    na.locf(i)
-  })
-
-  xf2 |>
+  xf |>
+    as.data.frame.matrix() |>
+    na.locf(na.rm = FALSE) |> # invokes ?zoo:::na.locf.data.frame
     flextable() |>
     autofit(part = 'all') |>
     vline(j = nr) |>
