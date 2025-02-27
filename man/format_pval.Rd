@@ -4,12 +4,15 @@
 \alias{format_pval}
 \title{Format \eqn{p}-values with Significance Symbol}
 \usage{
-format_pval(x, add_p = FALSE, ...)
+format_pval(x, add_p = FALSE, add_symbol = TRUE, ...)
 }
 \arguments{
 \item{x}{R object of \link[base]{typeof} \link[base]{numeric}}
 
 \item{add_p, ...}{see function \link[scales]{label_pvalue}}
+
+\item{add_symbol}{\link[base]{logical} scalar, whether to add Unicode
+significance symbol.  Default \code{TRUE}}
 }
 \value{
 Function \link{format_pval} returns a \link[base]{character} \link[base]{vector}.
@@ -26,6 +29,7 @@ Workhorse of significance symbol is function \link[stats]{symnum} (also see func
 (p = setNames(c(pi^-100, .02, .05, .1, .9999, NA_real_), letters[1:5]))
 format_pval(p)
 format_pval(p, add_p = TRUE)
+format_pval(p, add_p = TRUE, add_symbol = FALSE)
 # below: not preferable
 base::format.pval(p, na.form = '', digits = 3L)
 base::format.pval(p, na.form = '', digits = 4L)
