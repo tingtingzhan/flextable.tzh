@@ -42,6 +42,7 @@ format_pval <- function(x, add_p = FALSE, ...) {
   
   ret <- trimws(paste(ret0, sym))
   ret[is.na(x)] <- '' # *not* NA_character_
+  attributes(ret) <- attributes(x) # names, dim, dimnames, etc.
   return(ret)
   
 }
