@@ -2,19 +2,22 @@
 % Please edit documentation in R/pairwise.htest.R
 \name{as_flextable.pairwise.htest}
 \alias{as_flextable.pairwise.htest}
-\title{as_flextable.pairwise.htest}
+\title{Convert \eqn{p}-values of \code{pairwise.htest} Object into \link[flextable]{flextable}}
 \usage{
 \method{as_flextable}{pairwise.htest}(x, row.title = x$method, ...)
 }
 \arguments{
-\item{x}{a \code{'pairwise.htest'} object, as returned from \link[stats]{pairwise.t.test},
+\item{x}{a \code{'pairwise.htest'} object, as returned from functions \link[stats]{pairwise.t.test},
 \link[stats]{pairwise.wilcox.test} or
 \link[stats]{pairwise.prop.test}.}
 
-\item{row.title, ...}{additional parameters of \link{as_flextable.array}}
+\item{row.title, ...}{additional parameters of function \link{as_flextable.array}}
+}
+\value{
+Function \link{as_flextable.pairwise.htest} returns a \link[flextable]{flextable}.
 }
 \description{
-as_flextable.pairwise.htest
+Convert \eqn{p}-values of a \code{pairwise.htest} object into a \link[flextable]{flextable}.
 }
 \examples{
 aq = within(airquality, expr = {
