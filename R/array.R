@@ -23,7 +23,6 @@
 #' 
 #' tryCatch(as_flextable(UCBAdmissions), error = identity) # ?flextable:::as_flextable.table
 #' tryCatch(as_flextable.array(UCBAdmissions), error = identity)
-#' @importFrom flextable as_flextable flextable autofit hline vline hline_top add_header_row merge_v merge_h align fix_border_issues bold
 #' @importFrom officer fp_border
 #' @export as_flextable.array
 #' @export

@@ -15,7 +15,6 @@
 #' # ?stats::dist
 #' (dd = as.dist((1 - cor(USJudgeRatings))/2))
 #' as_flextable(dd)
-#' @importFrom flextable as_flextable
 #' @export as_flextable.dist
 #' @export
 as_flextable.dist <- function(x, ...) {

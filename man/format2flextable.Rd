@@ -27,3 +27,4 @@ tryCatch(as_flextable(aml2), error = identity)
 
 aml2 |> format2flextable() |> as_flextable()
 }
+\keyword{internal}

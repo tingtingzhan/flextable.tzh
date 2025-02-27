@@ -17,6 +17,7 @@
 #' tryCatch(as_flextable(aml2), error = identity)
 #' 
 #' aml2 |> format2flextable() |> as_flextable()
+#' @keywords internal
 #' @export
 format2flextable <- function(x) {
   x[] <- lapply(x, FUN = function(ix) {
