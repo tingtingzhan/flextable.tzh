@@ -19,6 +19,5 @@ Function \link{as_flextable.dist} returns a \link[flextable]{flextable}.
 }
 \examples{
 # ?stats::dist
-(dd = as.dist((1 - cor(USJudgeRatings))/2))
-as_flextable(dd)
+as.dist((1 - cor(USJudgeRatings))/2) |> as_flextable()
 }

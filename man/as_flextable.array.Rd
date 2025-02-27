@@ -28,9 +28,9 @@ Function \link{as_flextable.array} returns a \link[flextable]{flextable}.
 ..
 }
 \examples{
-as_flextable(VADeaths) # 'matrix'
-as_flextable(occupationalStatus) # ?flextable:::as_flextable.table
-as_flextable.array(occupationalStatus)
+VADeaths |> as_flextable() # 'matrix'
+occupationalStatus |> as_flextable() # ?flextable:::as_flextable.table
+occupationalStatus |> as_flextable.array()
 
 tryCatch(as_flextable(UCBAdmissions), error = identity) # ?flextable:::as_flextable.table
 tryCatch(as_flextable.array(UCBAdmissions), error = identity)

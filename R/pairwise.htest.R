@@ -17,8 +17,7 @@
 #' aq = within(airquality, expr = {
 #'   Month = factor(Month, labels = month.abb[5:9])
 #' })
-#' (x = with(aq, pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')))
-#' as_flextable(x)
+#' with(aq, pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')) |> as_flextable()
 #' @method as_flextable pairwise.htest
 #' @export as_flextable.pairwise.htest
 #' @export

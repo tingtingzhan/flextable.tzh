@@ -23,6 +23,5 @@ Convert \eqn{p}-values of a \code{pairwise.htest} object into a \link[flextable]
 aq = within(airquality, expr = {
   Month = factor(Month, labels = month.abb[5:9])
 })
-(x = with(aq, pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')))
-as_flextable(x)
+with(aq, pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')) |> as_flextable()
 }

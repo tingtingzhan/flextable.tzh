@@ -20,7 +20,7 @@ Convert \link[stats]{ftable} to \link[flextable]{flextable}
 \examples{
 esoph0 = esoph[c('tobgp', 'ncases', 'ncontrols')]
 (x0 = ftable(xtabs(cbind(ncases, ncontrols) ~ ., data = esoph0)))
-as_flextable(x0)
+x0 |> as_flextable()
 (x = ftable(xtabs(cbind(ncases, ncontrols) ~ ., data = esoph)))
-as_flextable(x)
+x |> as_flextable()
 }
