@@ -14,10 +14,12 @@
 #' Function [as_flextable.pairwise.htest] returns a \link[flextable]{flextable}.
 #' 
 #' @examples
-#' aq = within(airquality, expr = {
-#'   Month = factor(Month, labels = month.abb[5:9])
-#' })
-#' with(aq, pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')) |> as_flextable()
+#' airquality |> 
+#'   within.data.frame(expr = {
+#'     Month = factor(Month, labels = month.abb[5:9])
+#'   }) |>
+#'   with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')) |>
+#'   as_flextable()
 #' @method as_flextable pairwise.htest
 #' @export as_flextable.pairwise.htest
 #' @export
