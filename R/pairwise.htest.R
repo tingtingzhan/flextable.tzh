@@ -26,3 +26,4 @@
 as_flextable.pairwise.htest <- function(x, row.title = x$method, ...) {
   as_flextable.array(format_pval(x$p.value), row.title = row.title, ...)
 }
+
