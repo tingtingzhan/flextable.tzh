@@ -14,9 +14,9 @@
 #' 
 #' @examples 
 #' summary(fm1 <- aov(breaks ~ wool + tension, data = warpbreaks))
-#' TukeyHSD(fm1, which = 'tension', ordered = TRUE) |> as_flextable()
-#' TukeyHSD(fm1, which = 'tension') |> as_flextable()
-#' TukeyHSD(fm1) |> as_flextable()
+#' fm1 |> TukeyHSD(which = 'tension', ordered = TRUE) |> as_flextable()
+#' fm1 |> TukeyHSD(which = 'tension') |> as_flextable()
+#' fm1 |> TukeyHSD() |> as_flextable()
 #' @export as_flextable.TukeyHSD
 #' @export
 as_flextable.TukeyHSD <- function(

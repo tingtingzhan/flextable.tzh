@@ -117,6 +117,7 @@ p_adjust_.numeric <- function(x) {
 #' pairwise.prop.test(smokers, patients, p.adj = 'none') |>
 #'  suppressWarnings() |>
 #'  p_adjust_()
+#' @method p_adjust_ pairwise.htest
 #' @export p_adjust_.pairwise.htest
 #' @export
 p_adjust_.pairwise.htest <- function(x) {
