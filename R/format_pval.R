@@ -28,10 +28,14 @@
 #' # below: not preferable
 #' base::format.pval(p, na.form = '', digits = 3L)
 #' base::format.pval(p, na.form = '', digits = 4L)
+#' # below: exception handling
+#' format_pval(double())
 #' @importFrom scales label_pvalue
 #' @importFrom stats symnum
 #' @export
 format_pval <- function(x, add_p = FALSE, add_symbol = TRUE, ...) {
+  
+  if (!length(x)) return(character(length = 0L))
   
   ret0 <- label_pvalue(add_p = add_p, ...)(x) |>
     sub(pattern = '([-]?)0[.]', replacement = '\\1.') # my [dropleading0]

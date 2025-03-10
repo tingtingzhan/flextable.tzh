@@ -33,4 +33,6 @@ format_pval(p, add_p = TRUE, add_symbol = FALSE)
 # below: not preferable
 base::format.pval(p, na.form = '', digits = 3L)
 base::format.pval(p, na.form = '', digits = 4L)
+# below: exception handling
+format_pval(double())
 }
