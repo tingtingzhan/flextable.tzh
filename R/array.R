@@ -77,11 +77,16 @@ as_flextable.array <- function(
   #if (has_DNM[1L]) names(x2)[1L] <- DNM[1L]
   names(x2)[1L] <- row.title
   
-  vline_j <- if (length(vline_j)) {
+  if (length(vline_j)) {
     # row.names becomes col-1
     # but never put a vline at the right-end of table
-    setdiff(x = vline_j+1L, y = length(x2)) 
-  } else integer()
+    vline_j <- setdiff(x = vline_j+1L, y = length(x2)) 
+  } # else do nothing
+  
+  if (length(hline_i)) {
+    # never put an hline at the bottom of table
+    hline_i <- setdiff(x = hline_i, y = nrow(x0))
+  }
   
   border_hard_ <- fp_border(width = 1.5, color = 'gray40')
   # *looks* like default border used in ?flextable::flextable
