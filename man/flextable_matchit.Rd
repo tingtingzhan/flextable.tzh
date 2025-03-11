@@ -27,22 +27,13 @@ Convert \link[MatchIt]{matchit} to \link[flextable]{flextable}
 library(MatchIt)
 # ?MatchIt::lalonde 
 # `treat` is the treatment arm (0/1), `re78` is the outcome
-matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde) |>
- as_flextable(addlvariables = 're78')
-
-lalonde1 = within(lalonde, expr = {
-  treat1 = as.logical(treat); treat = NULL
-})
-matchit(treat1 ~ age+educ+race+nodegree+married+re74+re75, data = lalonde1) |>
- as_flextable(addlvariables = 're78')
-  
-lalonde2 = within(lalonde, expr = {
-  treat2 = structure(treat + 1L, levels = c('control', 'treated'), class = 'factor')
-  treat = NULL
-})
-matchit(treat2 ~ age+educ+race+nodegree+married+re74+re75, data = lalonde2) |>
- as_flextable(addlvariables = 're78')
-matchit(treat2 ~ age+educ+race+nodegree+married+re74+re75, data = lalonde2, ratio = 2) |>
- as_flextable(addlvariables = 're78')
+m1 = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde)
+m2 = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde, ratio = 2)
+m1 |> as_flextable()
+m1 |> as_flextable(addlvariables = 're78')
+m1 |> Sprintf.matchit()
+m1 |> summary(addlvariables = 're78') |> Sprintf.summary.matchit()
+m2 |> as_flextable()
+m2 |> as_flextable(addlvariables = 're78')
 
 }
