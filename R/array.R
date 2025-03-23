@@ -76,6 +76,8 @@ as_flextable.array <- function(
   x2 <- data.frame(' ' = row.names.data.frame(x1), x1, row.names = NULL, check.names = FALSE, fix.empty.names = FALSE, stringsAsFactors = FALSE)
   #if (has_DNM[1L]) names(x2)[1L] <- DNM[1L]
   names(x2)[1L] <- row.title
+  # ?flextable::flextable -> ?flextable:::complex_tabpart
+  # line 19: `data[col_keys]` will not allow zchar colnames
   
   if (length(vline_j)) {
     # row.names becomes col-1
