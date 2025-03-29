@@ -20,7 +20,7 @@
 #' @keywords internal
 #' @export
 format2flextable <- function(x) {
-  x[] <- lapply(x, FUN = function(ix) {
+  x[] <- lapply(x, FUN = \(ix) {
     if (inherits(ix, what = 'Surv')) {
       format(ix) 
       # ?survival::format.Surv # convert 'Surv' (inherits from 'matrix') to 'character'

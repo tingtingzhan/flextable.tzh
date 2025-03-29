@@ -54,7 +54,7 @@ as_flextable.array <- function(
   
   if (nd > 2L) {
     # this does not work well with ?rmarkdown::render
-    #return(lapply(seq_len(dmx[[3L]]), FUN = function(i) {
+    #return(lapply(seq_len(dmx[[3L]]), FUN = \(i) {
     #  ix <- array(x0[, , i, drop = TRUE], dim = dmx[1:2], dimnames = dnm[1:2])
     #  as_flextable.array(ix) |> flextable::set_caption(caption = sprintf(fmt = '%s = %s', DNM[3L], dnm[[3L]][i]))
     #}))

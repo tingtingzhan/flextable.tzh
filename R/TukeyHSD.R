@@ -29,7 +29,7 @@ as_flextable.TukeyHSD <- function(
   
   conf.level <- attr(x, which = 'conf.level', exact = TRUE)
   
-  ret0 <- .mapply(FUN = function(x, nm) {
+  ret0 <- .mapply(FUN = \(x, nm) {
     tmp <- x
     tmp[,1L] <- sprintf(fmt = '%.2f (%.2f, %.2f)', x[,1L], x[,2L], x[,3L])
     tmp[,4L] <- format_pval(x[,4L])
