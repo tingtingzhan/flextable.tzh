@@ -18,11 +18,13 @@ Function \link{symmetric2flextable} returns a \link[flextable]{flextable}.
 To convert an \link[base]{isSymmetric} matrix to a \link[flextable]{flextable}.
 }
 \examples{
-(cov_ = cov(trees, use = 'pairwise.complete.obs'))
-symmetric2flextable(cov_, digits = 3L)
-(cor_ = cor(trees, use = 'pairwise.complete.obs'))
-symmetric2flextable(cor_, digits = 3L)
+cov(trees, use = 'pairwise.complete.obs') |>
+  symmetric2flextable(digits = 3L)
+
+cor(trees, use = 'pairwise.complete.obs') |>
+  symmetric2flextable(digits = 3L)
 }
 \seealso{
 \link[stats]{cov2cor}
 }
+\keyword{internal}

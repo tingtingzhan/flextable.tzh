@@ -17,3 +17,4 @@ Function \link{as_flextable.noquote} returns a \link[flextable]{flextable}.
 \description{
 as_flextable.noquote
 }
+\keyword{internal}

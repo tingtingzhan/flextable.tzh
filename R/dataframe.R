@@ -30,6 +30,8 @@
 #' })
 #' as_flextable_dataframe(aml2, hline_i = ~ x)
 #' 
+#' @keywords internal
+#' @importFrom flextable flextable autofit hline vline
 #' @export
 as_flextable_dataframe <- function(
     x,

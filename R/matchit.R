@@ -25,6 +25,8 @@
 #' m2 |> as_flextable(addlvariables = 're78')
 #' 
 #' @name flextable_matchit
+#' @keywords internal
+#' @importFrom flextable as_flextable
 #' @export as_flextable.matchit
 #' @export
 as_flextable.matchit <- function(x, ...) {
@@ -36,6 +38,7 @@ as_flextable.matchit <- function(x, ...) {
 }
 
 #' @rdname flextable_matchit
+#' @importFrom flextable as_flextable
 #' @export as_flextable.summary.matchit
 #' @export
 as_flextable.summary.matchit <- function(x, fmt = '%.3f', ...) {

@@ -17,6 +17,8 @@
 #' fm1 |> TukeyHSD(which = 'tension', ordered = TRUE) |> as_flextable()
 #' fm1 |> TukeyHSD(which = 'tension') |> as_flextable()
 #' fm1 |> TukeyHSD() |> as_flextable()
+#' @keywords internal
+#' @importFrom flextable as_flextable
 #' @export as_flextable.TukeyHSD
 #' @export
 as_flextable.TukeyHSD <- function(

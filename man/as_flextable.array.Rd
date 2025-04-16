@@ -22,7 +22,7 @@
 \item{...}{..}
 }
 \value{
-Function \link{as_flextable.array} returns a \link[flextable]{flextable}.
+Function \code{\link[=as_flextable.array]{as_flextable.array()}} returns a \link[flextable]{flextable}.
 }
 \description{
 ..
@@ -35,3 +35,4 @@ occupationalStatus |> as_flextable.array()
 tryCatch(as_flextable(UCBAdmissions), error = identity) # ?flextable:::as_flextable.table
 tryCatch(as_flextable.array(UCBAdmissions), error = identity)
 }
+\keyword{internal}

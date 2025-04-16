@@ -24,3 +24,4 @@ x0 |> as_flextable()
 (x = ftable(xtabs(cbind(ncases, ncontrols) ~ ., data = esoph)))
 x |> as_flextable()
 }
+\keyword{internal}

@@ -27,3 +27,4 @@ fm1 |> TukeyHSD(which = 'tension', ordered = TRUE) |> as_flextable()
 fm1 |> TukeyHSD(which = 'tension') |> as_flextable()
 fm1 |> TukeyHSD() |> as_flextable()
 }
+\keyword{internal}

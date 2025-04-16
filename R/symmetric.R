@@ -13,10 +13,12 @@
 #' Function [symmetric2flextable] returns a \link[flextable]{flextable}.
 #' 
 #' @examples 
-#' (cov_ = cov(trees, use = 'pairwise.complete.obs'))
-#' symmetric2flextable(cov_, digits = 3L)
-#' (cor_ = cor(trees, use = 'pairwise.complete.obs'))
-#' symmetric2flextable(cor_, digits = 3L)
+#' cov(trees, use = 'pairwise.complete.obs') |>
+#'   symmetric2flextable(digits = 3L)
+#' 
+#' cor(trees, use = 'pairwise.complete.obs') |>
+#'   symmetric2flextable(digits = 3L)
+#' @keywords internal
 #' @seealso \link[stats]{cov2cor}
 #' @export
 symmetric2flextable <- function(x, ...) {
@@ -37,4 +39,6 @@ symmetric2flextable <- function(x, ...) {
   return(as_flextable.array(ret))
   
 }
+
+
 

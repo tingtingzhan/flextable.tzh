@@ -22,6 +22,8 @@
 #' class(m2 <- aov(yield ~  N*P*K + Error(block), data = npk)) # 'aovlist'
 #' as_flextable(m2)
 #' @name flextable_aov
+#' @keywords internal
+#' @importFrom flextable as_flextable
 #' @export as_flextable.anova
 #' @export
 as_flextable.anova <- function(x, fmt = '%.3f', row.title = ' ', ...) {
@@ -37,6 +39,7 @@ as_flextable.anova <- function(x, fmt = '%.3f', row.title = ' ', ...) {
 }
 
 #' @rdname flextable_aov
+#' @importFrom flextable as_flextable
 #' @importFrom stats summary.aov
 #' @export as_flextable.aov
 #' @export
@@ -46,6 +49,7 @@ as_flextable.aov <- function(x, ...) {
 
 
 #' @rdname flextable_aov
+#' @importFrom flextable as_flextable
 #' @export as_flextable.summary.aov
 #' @export
 as_flextable.summary.aov <- function(x, ...) {
@@ -56,6 +60,7 @@ as_flextable.summary.aov <- function(x, ...) {
 
 
 #' @rdname flextable_aov
+#' @importFrom flextable as_flextable
 #' @export as_flextable.aovlist
 #' @export
 as_flextable.aovlist <- function(x, ...) {
@@ -66,6 +71,7 @@ as_flextable.aovlist <- function(x, ...) {
 
 
 #' @rdname flextable_aov
+#' @importFrom flextable as_flextable
 #' @export as_flextable.summary.aovlist
 #' @export
 as_flextable.summary.aovlist <- function(x, ...) {

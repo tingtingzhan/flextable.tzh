@@ -8,7 +8,7 @@
 #' \link[stats]{pairwise.wilcox.test} or
 #' \link[stats]{pairwise.prop.test}.
 #' 
-#' @param row.title,... additional parameters of function [as_flextable.array]
+#' @param row.title,... additional parameters of function [as_flextable.array()].
 #' 
 #' @returns
 #' Function [as_flextable.pairwise.htest] returns a \link[flextable]{flextable}.
@@ -20,6 +20,8 @@
 #'   }) |>
 #'   with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')) |>
 #'   as_flextable()
+#' @keywords internal
+#' @importFrom flextable as_flextable
 #' @method as_flextable pairwise.htest
 #' @export as_flextable.pairwise.htest
 #' @export

@@ -11,7 +11,7 @@
 \link[stats]{pairwise.wilcox.test} or
 \link[stats]{pairwise.prop.test}.}
 
-\item{row.title, ...}{additional parameters of function \link{as_flextable.array}}
+\item{row.title, ...}{additional parameters of function \code{\link[=as_flextable.array]{as_flextable.array()}}.}
 }
 \value{
 Function \link{as_flextable.pairwise.htest} returns a \link[flextable]{flextable}.
@@ -27,3 +27,4 @@ airquality |>
   with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')) |>
   as_flextable()
 }
+\keyword{internal}

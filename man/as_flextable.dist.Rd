@@ -9,15 +9,16 @@
 \arguments{
 \item{x}{\link[stats]{dist} object}
 
-\item{...}{additional parameters of function \link{as_flextable.array}}
+\item{...}{additional parameters of function \code{\link[=as_flextable.array]{as_flextable.array()}}}
 }
 \value{
-Function \link{as_flextable.dist} returns a \link[flextable]{flextable}.
+Function \code{\link[=as_flextable.dist]{as_flextable.dist()}} returns a \link[flextable]{flextable}.
 }
 \description{
 ..
 }
 \examples{
 # ?stats::dist
-as.dist((1 - cor(USJudgeRatings))/2) |> as_flextable()
+matrix(rnorm(100), nrow = 5) |> dist() |> as_flextable()
 }
+\keyword{internal}

@@ -6,14 +6,16 @@
 #' 
 #' @param x \link[stats]{dist} object
 #' 
-#' @param ... additional parameters of function [as_flextable.array]
+#' @param ... additional parameters of function [as_flextable.array()]
 #' 
 #' @returns 
-#' Function [as_flextable.dist] returns a \link[flextable]{flextable}.
+#' Function [as_flextable.dist()] returns a \link[flextable]{flextable}.
 #' 
 #' @examples
 #' # ?stats::dist
-#' as.dist((1 - cor(USJudgeRatings))/2) |> as_flextable()
+#' matrix(rnorm(100), nrow = 5) |> dist() |> as_flextable()
+#' @keywords internal
+#' @importFrom flextable as_flextable
 #' @export as_flextable.dist
 #' @export
 as_flextable.dist <- function(x, ...) {

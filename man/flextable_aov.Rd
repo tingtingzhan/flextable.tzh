@@ -40,3 +40,4 @@ aov(yield ~ block + N * P + K, npk) |> as_flextable()
 class(m2 <- aov(yield ~  N*P*K + Error(block), data = npk)) # 'aovlist'
 as_flextable(m2)
 }
+\keyword{internal}

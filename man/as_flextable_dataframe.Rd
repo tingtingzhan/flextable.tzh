@@ -40,3 +40,4 @@ aml2 = within(aml, expr = {
 as_flextable_dataframe(aml2, hline_i = ~ x)
 
 }
+\keyword{internal}

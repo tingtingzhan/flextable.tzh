@@ -4,9 +4,12 @@
 \name{flextable.tzh-package}
 \alias{flextable.tzh}
 \alias{flextable.tzh-package}
-\title{flextable.tzh}
+\title{flextable.tzh: flextable.tzh}
 \description{
-..
+Extension to package 'flextable'.
+}
+\note{
+haha
 }
 \author{
 \strong{Maintainer}: Tingting Zhan \email{tingtingzhan@gmail.com} (\href{https://orcid.org/0000-0001-9971-4844}{ORCID})

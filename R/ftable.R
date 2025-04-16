@@ -14,6 +14,8 @@
 #' x0 |> as_flextable()
 #' (x = ftable(xtabs(cbind(ncases, ncontrols) ~ ., data = esoph)))
 #' x |> as_flextable()
+#' @keywords internal
+#' @importFrom flextable flextable as_flextable autofit hline vline merge_v
 #' @importFrom zoo na.locf
 #' @export as_flextable.ftable
 #' @export

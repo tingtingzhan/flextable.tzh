@@ -37,3 +37,4 @@ m2 |> as_flextable()
 m2 |> as_flextable(addlvariables = 're78')
 
 }
+\keyword{internal}

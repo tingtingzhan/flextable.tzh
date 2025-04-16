@@ -1,9 +1,8 @@
 
 
-#' @title flextable.tzh
-#'
-#' @description ..
-#'
-#' @import flextable
+#' @note
+#' 
+#' haha
+#' 
 '_PACKAGE'
 
