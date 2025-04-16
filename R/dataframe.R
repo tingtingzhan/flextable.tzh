@@ -12,8 +12,6 @@
 #' 
 #' @param vline_j ..
 #' 
-#' @param highlight_j ..
-#' 
 #' @param ... ..
 #' 
 #' @note
@@ -37,7 +35,6 @@ as_flextable_dataframe <- function(
     x,
     hline_i = integer(0L), 
     vline_j = attr(x, which = 'vline_j', exact = TRUE) %||% integer(0L),
-    highlight_j = attr(x, which = 'highlight_j', exact = TRUE) %||% integer(0L),
     ...
 ) {
   
@@ -64,8 +61,7 @@ as_flextable_dataframe <- function(
     flextable() |>
     autofit(part = 'all') |>
     hline(i = hline_i) |>
-    vline(j = vline_j) |>
-    highlight(j = highlight_j, part = 'all')
+    vline(j = vline_j)
   
 }
 
