@@ -19,6 +19,7 @@
 #' fm1 |> TukeyHSD() |> as_flextable()
 #' @keywords internal
 #' @importFrom flextable as_flextable
+#' @importFrom scales.tzh label_pvalue_sym
 #' @export as_flextable.TukeyHSD
 #' @export
 as_flextable.TukeyHSD <- function(
@@ -34,7 +35,7 @@ as_flextable.TukeyHSD <- function(
   ret0 <- .mapply(FUN = \(x, nm) {
     tmp <- x
     tmp[,1L] <- sprintf(fmt = '%.2f (%.2f, %.2f)', x[,1L], x[,2L], x[,3L])
-    tmp[,4L] <- format_pval(x[,4L])
+    tmp[,4L] <- x[,4L] |> label_pvalue_sym()()
     ret <- tmp[, c(1L, 4L), drop = FALSE]
     dimnames(ret) <- list(
       sprintf(fmt = '%s \u2e22%s\u2e25', nm, rownames(tmp)),

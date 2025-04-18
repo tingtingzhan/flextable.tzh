@@ -16,14 +16,14 @@
 #' @examples
 #' # ?stats::aov
 #' op = options(contrasts = c("contr.helmert", "contr.poly"))
-#' class(m1 <- aov(yield ~ block + N*P*K, data = npk)) # 'aov'
-#' as_flextable(m1)
+#' aov(yield ~ block + N*P*K, data = npk) |> as_flextable()
 #' aov(yield ~ block + N * P + K, npk) |> as_flextable()
-#' class(m2 <- aov(yield ~  N*P*K + Error(block), data = npk)) # 'aovlist'
-#' as_flextable(m2)
+#' aov(yield ~  N*P*K + Error(block), data = npk) |> # 'aovlist'
+#'  as_flextable()
 #' @name flextable_aov
 #' @keywords internal
 #' @importFrom flextable as_flextable
+#' @importFrom scales.tzh label_pvalue_sym
 #' @export as_flextable.anova
 #' @export
 as_flextable.anova <- function(x, fmt = '%.3f', row.title = ' ', ...) {
@@ -31,7 +31,7 @@ as_flextable.anova <- function(x, fmt = '%.3f', row.title = ' ', ...) {
   x0 <- as.data.frame(x)
   x0[2:4] <- lapply(x0[2:4], FUN = sprintf, fmt = fmt)
   x0[['F value']][x0[['F value']] == 'NA'] <- ''
-  x0[['Pr(>F)']] <- format_pval(x[['Pr(>F)']])
+  x0[['Pr(>F)']] <- x[['Pr(>F)']] |> label_pvalue_sym()()
   .rowNamesDF(x0) <- x |> row.names.data.frame() |> trimws()
   x1 <- data.frame(' ' = row.names.data.frame(x0), x0, row.names = NULL, check.names = FALSE, fix.empty.names = FALSE, stringsAsFactors = FALSE)
   names(x1)[1L] <- row.title

@@ -22,10 +22,13 @@
 #'   as_flextable()
 #' @keywords internal
 #' @importFrom flextable as_flextable
+#' @importFrom scales.tzh label_pvalue_sym
 #' @method as_flextable pairwise.htest
 #' @export as_flextable.pairwise.htest
 #' @export
 as_flextable.pairwise.htest <- function(x, row.title = x$method, ...) {
-  as_flextable.array(format_pval(x$p.value), row.title = row.title, ...)
+  x$p.value |>
+    label_pvalue_sym()() |>
+    as_flextable.array(row.title = row.title, ...)
 }
 

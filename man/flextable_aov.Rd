@@ -34,10 +34,9 @@ Convert \link[stats]{aov}, \link[stats]{anova}, or their \link[base]{summary} re
 \examples{
 # ?stats::aov
 op = options(contrasts = c("contr.helmert", "contr.poly"))
-class(m1 <- aov(yield ~ block + N*P*K, data = npk)) # 'aov'
-as_flextable(m1)
+aov(yield ~ block + N*P*K, data = npk) |> as_flextable()
 aov(yield ~ block + N * P + K, npk) |> as_flextable()
-class(m2 <- aov(yield ~  N*P*K + Error(block), data = npk)) # 'aovlist'
-as_flextable(m2)
+aov(yield ~  N*P*K + Error(block), data = npk) |> # 'aovlist'
+ as_flextable()
 }
 \keyword{internal}
