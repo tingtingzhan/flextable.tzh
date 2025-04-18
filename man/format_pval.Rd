@@ -15,7 +15,7 @@ format_pval(x, add_p = FALSE, add_symbol = TRUE, ...)
 significance symbol.  Default \code{TRUE}}
 }
 \value{
-Function \link{format_pval} returns a \link[base]{character} \link[base]{vector}.
+Function \code{\link[=format_pval]{format_pval()}} returns a \link[base]{character} \link[base]{vector}.
 }
 \description{
 Format \eqn{p}-values with significance symbol.
@@ -26,13 +26,16 @@ Workhorse of \eqn{p}-value formatting is function \link[scales]{label_pvalue}.
 Workhorse of significance symbol is function \link[stats]{symnum} (also see function \link[stats]{printCoefmat}).
 }
 \examples{
-(p = setNames(c(pi^-100, .02, .05, .1, .9999, NA_real_), letters[1:5]))
-format_pval(p)
-format_pval(p, add_p = TRUE)
-format_pval(p, add_p = TRUE, add_symbol = FALSE)
+p1 = p2 = c(pi^-100, .02, .05, .1, .9999, NA_real_)
+dim(p1) = c(2, 3); p1
+names(p2) = letters[1:6]; p2
+format_pval(p1) # attr-dim kept
+format_pval(p2) # attr-name kept
+format_pval(p1, add_p = TRUE)
+format_pval(p2, add_p = TRUE, add_symbol = FALSE)
 # below: not preferable
-base::format.pval(p, na.form = '', digits = 3L)
-base::format.pval(p, na.form = '', digits = 4L)
+base::format.pval(p1, na.form = '', digits = 3L)
+base::format.pval(p2, na.form = '', digits = 4L)
 # below: exception handling
 format_pval(double())
 }

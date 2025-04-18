@@ -18,27 +18,34 @@
 #' Workhorse of significance symbol is function \link[stats]{symnum} (also see function \link[stats]{printCoefmat}).
 #' 
 #' @returns 
-#' Function [format_pval] returns a \link[base]{character} \link[base]{vector}.
+#' Function [format_pval()] returns a \link[base]{character} \link[base]{vector}.
 #' 
 #' @examples 
-#' (p = setNames(c(pi^-100, .02, .05, .1, .9999, NA_real_), letters[1:5]))
-#' format_pval(p)
-#' format_pval(p, add_p = TRUE)
-#' format_pval(p, add_p = TRUE, add_symbol = FALSE)
+#' p1 = p2 = c(pi^-100, .02, .05, .1, .9999, NA_real_)
+#' dim(p1) = c(2, 3); p1
+#' names(p2) = letters[1:6]; p2
+#' format_pval(p1) # attr-dim kept
+#' format_pval(p2) # attr-name kept
+#' format_pval(p1, add_p = TRUE)
+#' format_pval(p2, add_p = TRUE, add_symbol = FALSE)
 #' # below: not preferable
-#' base::format.pval(p, na.form = '', digits = 3L)
-#' base::format.pval(p, na.form = '', digits = 4L)
+#' base::format.pval(p1, na.form = '', digits = 3L)
+#' base::format.pval(p2, na.form = '', digits = 4L)
 #' # below: exception handling
 #' format_pval(double())
 #' @importFrom scales label_pvalue
 #' @importFrom stats symnum
 #' @export
 format_pval <- function(x, add_p = FALSE, add_symbol = TRUE, ...) {
+
+  ret <- x
+  storage.mode(ret) <- 'character'
   
-  if (!length(x)) return(character(length = 0L))
+  if (!length(x)) return(ret)
   
-  ret0 <- label_pvalue(add_p = add_p, ...)(x) |>
-    sub(pattern = '([-]?)0[.]', replacement = '\\1.') # my [dropleading0]
+  ret[] <- x |> 
+    label_pvalue(add_p = add_p, ...)() |>
+    sub(pattern = '([-]?)0[.]', replacement = '\\1.') # http://stackoverflow.com/questions/12643391
   
   if (add_symbol) {
     sym <- symnum(
@@ -47,11 +54,11 @@ format_pval <- function(x, add_p = FALSE, add_symbol = TRUE, ...) {
       #symbols = c('\u2605\u2605\u2605', '\u2605\u2605', '\u2605', '\u2606', '') # star
       symbols = c('\u2b51\u2b51\u2b51', '\u2b51\u2b51', '\u2b51', '\u2b52', '') # small star
     ) # see ?stats::printCoefmat
-    ret <- paste(ret0, sym) |> trimws()
-  } else ret <- ret0
+    ret[] <- ret |> paste(sym) |> trimws()
+  } # else do nothing
   
   ret[is.na(x)] <- '' # *not* NA_character_
-  attributes(ret) <- attributes(x) # names, dim, dimnames, etc.
+  
   return(ret)
   
 }
