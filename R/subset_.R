@@ -34,11 +34,6 @@
 #' @returns
 #' Function [subset_()] returns a \link[flextable]{flextable}.
 #' 
-#' @examples 
-#' subset_(trees, Girth > 9 & Height < 70)
-#' subset_(swiss, Fertility > 80, avoid = 'Catholic')
-#' subset_(warpbreaks, wool == 'K')
-#' 
 #' @keywords internal
 #' @importFrom flextable flextable autofit highlight vline
 #' @importFrom cli col_cyan style_bold

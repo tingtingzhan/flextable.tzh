@@ -17,8 +17,4 @@ Function \code{\link[=as_flextable.dist]{as_flextable.dist()}} returns a \link[f
 \description{
 ..
 }
-\examples{
-# ?stats::dist
-matrix(rnorm(100), nrow = 5) |> dist() |> as_flextable()
-}
 \keyword{internal}

@@ -11,19 +11,6 @@
 #' @returns 
 #' Functions [as_flextable.matchit] and [as_flextable.summary.matchit] both return a \link[flextable]{flextable}.
 #' 
-#' @examples
-#' library(MatchIt)
-#' # ?MatchIt::lalonde 
-#' # `treat` is the treatment arm (0/1), `re78` is the outcome
-#' m1 = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde)
-#' m2 = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde, ratio = 2)
-#' m1 |> as_flextable()
-#' m1 |> as_flextable(addlvariables = 're78')
-#' m1 |> Sprintf.matchit()
-#' m1 |> summary(addlvariables = 're78') |> Sprintf.summary.matchit()
-#' m2 |> as_flextable()
-#' m2 |> as_flextable(addlvariables = 're78')
-#' 
 #' @name flextable_matchit
 #' @keywords internal
 #' @importFrom flextable as_flextable

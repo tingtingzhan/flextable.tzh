@@ -1,0 +1,312 @@
+---
+title: "flextable.tzh"
+author: Tingting Zhan
+format: 
+  html:
+    page-layout: full
+    html-math-method: katex
+toc: true
+toc-location: left
+toc-depth: 4
+toc-title: ''
+editor: visual
+knitr:
+  opts_chunk: 
+    collapse: true
+    comment: "#>" 
+vignette: >
+  %\VignetteIndexEntry{intro}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Introduction
+
+This vignette of package **`flextable.tzh`** ([Github](https://github.com/tingtingzhan/flextable.tzh)) documents ...
+
+## Note to Students
+
+Examples in this vignette require that the `search` path has
+
+```{r}
+library(flextable)
+library(flextable.tzh)
+```
+
+```{r}
+#| echo: false
+library(knitr) # for tables in this vignette
+#options(mc.cores = 1L) # for CRAN submission
+```
+
+## Terms and Abbreviations
+
+```{r}
+#| echo: false
+#| results: asis
+c(
+  '[|>](https://search.r-project.org/R/refmans/base/html/pipeOp.html)', 'Forward pipe operator introduced in `R` 4.1.0',
+  '`$`', '[Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object',
+  '`CRAN`, `R`', '[The Comprehensive R Archive Network](https://cran.r-project.org)',
+  '[`class`](https://search.r-project.org/R/refmans/base/html/class.html)', 'Object class',
+  '[`dbinom`, `pbinom`, `qbinom`](https://search.r-project.org/R/refmans/stats/html/Binomial.html)', 'Binomial density, probability, quantile',
+  '[`dpois`, `ppois`, `qpois`](https://search.r-project.org/R/refmans/stats/html/Poisson.html)', 'Poisson density, probability, quantile',
+  '[`dnorm`, `pnorm`, `qnorm`](https://search.r-project.org/R/refmans/stats/html/Normal.html)', 'Normal density, probability, quantile',
+  '[`L`](https://adv-r.hadley.nz/vectors-chap.html#atomic-vectors)', '[Integer](https://search.r-project.org/R/refmans/base/html/integer.html) notation',
+  '[`label_percent`](https://search.r-project.org/CRAN/refmans/scales/html/label_percent.html)', 'Label for percentages',
+  '[`search`](https://search.r-project.org/R/refmans/base/html/search.html)', 'Search path'
+) |>
+  matrix(nrow = 2L, dimnames = list(c('Term / Abbreviation', 'Description'), NULL)) |>
+  t.default() |>
+  as.data.frame.matrix() |> 
+  kable() 
+```
+
+# `as_flextable.*()`
+
+## `array`
+
+```{r}
+VADeaths |> 
+  as_flextable()
+```
+
+```{r}
+occupationalStatus |> 
+  as_flextable() # ?flextable:::as_flextable.table
+```
+
+```{r}
+occupationalStatus |> 
+  as_flextable.array()
+```
+
+```{r}
+tryCatch(as_flextable(UCBAdmissions), error = identity) # ?flextable:::as_flextable.table
+```
+
+
+```{r}
+tryCatch(as_flextable.array(UCBAdmissions), error = identity)
+```
+
+## `data.frame`
+
+```{r}
+as_flextable_dataframe(warpbreaks, hline_i = ~ tension)
+```
+
+
+```{r}
+library(survival)
+aml2 = within(aml, expr = {
+  edp = Surv(time, status)
+  time = status = NULL
+})
+```
+
+
+```{r}
+# ?flextable:::as_flextable.data.frame cannot process 'matrix' columns, as of 2024-10-27
+tryCatch(as_flextable(aml2), error = identity)
+
+aml2 |> format2flextable() |> as_flextable()
+```
+
+
+```{r}
+as_flextable_dataframe(aml2, hline_i = ~ x)
+```
+
+## `dist`
+
+```{r}
+matrix(rnorm(100), nrow = 5) |> 
+  dist() |> 
+  as_flextable()
+```
+
+## `ftable`
+
+```{r}
+esoph0 = esoph[c('tobgp', 'ncases', 'ncontrols')]
+```
+
+
+```{r}
+esoph0 |>
+  xtabs(formula = cbind(ncases, ncontrols) ~ . ) |>
+  ftable() |>
+  as_flextable()
+```
+
+
+```{r}
+esoph |>
+  xtabs(formula = cbind(ncases, ncontrols) ~ .) |>
+  ftable() |>
+  as_flextable()
+```
+
+
+## `aov`
+```{r}
+op = options(contrasts = c("contr.helmert", "contr.poly"))
+```
+
+
+```{r}
+aov(yield ~ block + N*P*K, data = npk) |> 
+  as_flextable()
+```
+
+```{r}
+aov(yield ~ block + N * P + K, npk) |> 
+  as_flextable()
+```
+
+```{r}
+aov(yield ~  N*P*K + Error(block), data = npk) |> # 'aovlist'
+  as_flextable()
+```
+
+
+## `TukeyHSD`
+
+```{r}
+fm1 = aov(breaks ~ wool + tension, data = warpbreaks)
+```
+
+```{r}
+fm1 |> 
+  TukeyHSD(which = 'tension', ordered = TRUE) |> 
+  as_flextable()
+```
+
+
+```{r}
+fm1 |> 
+  TukeyHSD(which = 'tension') |> 
+  as_flextable()
+```
+
+
+```{r}
+fm1 |> 
+  TukeyHSD() |> 
+  as_flextable()
+```
+
+## `pairwise.htest`
+
+```{r}
+aq = airquality |> 
+  within.data.frame(expr = {
+    Month = factor(Month, labels = month.abb[5:9])
+  })
+```
+
+
+```{r}
+aq |>
+  with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')) |>
+  as_flextable()
+```
+
+
+
+
+```{r}
+aq |>
+  with(expr = pairwise.wilcox.test(Ozone, Month, p.adj = 'none')) |>
+  suppressWarnings() |> # warnings for ties
+  p_adjust_()
+```
+
+
+```{r}
+smokers = c(83L, 90L, 129L, 70L)
+patients = c(86L, 93L, 136L, 82L)
+pairwise.prop.test(smokers, patients, p.adj = 'none') |>
+  suppressWarnings() |>
+  p_adjust_()
+```
+
+
+## `matchit`
+
+```{r}
+library(MatchIt)
+# ?MatchIt::lalonde 
+# `treat` is the treatment arm (0/1), `re78` is the outcome
+```
+
+
+```{r}
+m1 = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde)
+m1 |> as_flextable()
+```
+
+
+```{r}
+m1 |> as_flextable(addlvariables = 're78')
+```
+
+
+```{r}
+m1 |> Sprintf.matchit()
+```
+
+
+```{r}
+m1 |> summary(addlvariables = 're78') |> Sprintf.summary.matchit()
+```
+
+
+```{r}
+m2 = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde, ratio = 2)
+```
+
+
+```{r}
+m2 |> as_flextable()
+```
+
+
+```{r}
+m2 |> as_flextable(addlvariables = 're78')
+```
+
+# Other Functions
+
+## `subset_()`
+
+```{r}
+subset_(trees, Girth > 9 & Height < 70)
+```
+
+
+```{r}
+subset_(swiss, Fertility > 80, avoid = 'Catholic')
+```
+
+
+```{r}
+subset_(warpbreaks, wool == 'K')
+```
+
+
+
+## `symmetric2flextable()`
+
+```{r}
+cov(trees, use = 'pairwise.complete.obs') |>
+  symmetric2flextable(digits = 3L)
+```
+
+
+```{r}
+cor(trees, use = 'pairwise.complete.obs') |>
+  symmetric2flextable(digits = 3L)
+```
+

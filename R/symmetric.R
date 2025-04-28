@@ -10,14 +10,8 @@
 #' @param ... additional parameters of function \link[base]{format.default}
 #' 
 #' @returns
-#' Function [symmetric2flextable] returns a \link[flextable]{flextable}.
+#' Function [symmetric2flextable()] returns a \link[flextable]{flextable}.
 #' 
-#' @examples 
-#' cov(trees, use = 'pairwise.complete.obs') |>
-#'   symmetric2flextable(digits = 3L)
-#' 
-#' cor(trees, use = 'pairwise.complete.obs') |>
-#'   symmetric2flextable(digits = 3L)
 #' @keywords internal
 #' @seealso \link[stats]{cov2cor}
 #' @export

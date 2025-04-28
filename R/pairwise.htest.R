@@ -13,13 +13,6 @@
 #' @returns
 #' Function [as_flextable.pairwise.htest] returns a \link[flextable]{flextable}.
 #' 
-#' @examples
-#' airquality |> 
-#'   within.data.frame(expr = {
-#'     Month = factor(Month, labels = month.abb[5:9])
-#'   }) |>
-#'   with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')) |>
-#'   as_flextable()
 #' @keywords internal
 #' @importFrom flextable as_flextable
 #' @importFrom scales.tzh label_pvalue_sym

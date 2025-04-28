@@ -29,15 +29,4 @@ Function \link{as_flextable_dataframe} returns a \link[flextable]{flextable}.
 \note{
 Name clash \code{flextable:::as_flextable.data.frame}.
 }
-\examples{
-as_flextable_dataframe(warpbreaks, hline_i = ~ tension)
-
-library(survival)
-aml2 = within(aml, expr = {
-  edp = Surv(time, status)
-  time = status = NULL
-})
-as_flextable_dataframe(aml2, hline_i = ~ x)
-
-}
 \keyword{internal}

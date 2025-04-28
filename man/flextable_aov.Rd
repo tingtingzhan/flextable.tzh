@@ -31,12 +31,4 @@
 \description{
 Convert \link[stats]{aov}, \link[stats]{anova}, or their \link[base]{summary} returns to \link[flextable]{flextable}.
 }
-\examples{
-# ?stats::aov
-op = options(contrasts = c("contr.helmert", "contr.poly"))
-aov(yield ~ block + N*P*K, data = npk) |> as_flextable()
-aov(yield ~ block + N * P + K, npk) |> as_flextable()
-aov(yield ~  N*P*K + Error(block), data = npk) |> # 'aovlist'
- as_flextable()
-}
 \keyword{internal}

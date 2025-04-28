@@ -12,11 +12,6 @@
 #' 
 #' @param ... additional parameters, currently not in use
 #' 
-#' @examples 
-#' summary(fm1 <- aov(breaks ~ wool + tension, data = warpbreaks))
-#' fm1 |> TukeyHSD(which = 'tension', ordered = TRUE) |> as_flextable()
-#' fm1 |> TukeyHSD(which = 'tension') |> as_flextable()
-#' fm1 |> TukeyHSD() |> as_flextable()
 #' @keywords internal
 #' @importFrom flextable as_flextable
 #' @importFrom scales.tzh label_pvalue_sym

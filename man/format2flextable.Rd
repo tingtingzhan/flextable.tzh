@@ -10,21 +10,9 @@ format2flextable(x)
 \item{x}{\link[base]{data.frame}}
 }
 \value{
-Function \link{format2flextable} returns a \link[base]{data.frame}
+Function \code{\link[=format2flextable]{format2flextable()}} returns a \link[base]{data.frame}
 }
 \description{
 format2flextable
-}
-\examples{
-library(survival)
-aml2 = within(aml, expr = {
-  edp = Surv(time, status)
-  time = status = NULL
-})
-
-# ?flextable:::as_flextable.data.frame cannot process 'matrix' columns, as of 2024-10-27
-tryCatch(as_flextable(aml2), error = identity)
-
-aml2 |> format2flextable() |> as_flextable()
 }
 \keyword{internal}

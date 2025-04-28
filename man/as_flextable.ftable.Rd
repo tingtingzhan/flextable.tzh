@@ -17,11 +17,4 @@ Function \link{as_flextable.ftable} returns a \link[flextable]{flextable}.
 \description{
 Convert \link[stats]{ftable} to \link[flextable]{flextable}
 }
-\examples{
-esoph0 = esoph[c('tobgp', 'ncases', 'ncontrols')]
-(x0 = ftable(xtabs(cbind(ncases, ncontrols) ~ ., data = esoph0)))
-x0 |> as_flextable()
-(x = ftable(xtabs(cbind(ncases, ncontrols) ~ ., data = esoph)))
-x |> as_flextable()
-}
 \keyword{internal}

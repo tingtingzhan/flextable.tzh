@@ -8,12 +8,6 @@
 #' @returns
 #' Function [as_flextable.ftable] returns a \link[flextable]{flextable}.
 #' 
-#' @examples
-#' esoph0 = esoph[c('tobgp', 'ncases', 'ncontrols')]
-#' (x0 = ftable(xtabs(cbind(ncases, ncontrols) ~ ., data = esoph0)))
-#' x0 |> as_flextable()
-#' (x = ftable(xtabs(cbind(ncases, ncontrols) ~ ., data = esoph)))
-#' x |> as_flextable()
 #' @keywords internal
 #' @importFrom flextable flextable as_flextable autofit hline vline merge_v
 #' @importFrom zoo na.locf

@@ -39,10 +39,4 @@ Function \code{\link[=subset_]{subset_()}} is different from function
 \item {be able to select all variables, except those in \code{avoid} and \code{avoid_pattern}.}
 }
 }
-\examples{
-subset_(trees, Girth > 9 & Height < 70)
-subset_(swiss, Fertility > 80, avoid = 'Catholic')
-subset_(warpbreaks, wool == 'K')
-
-}
 \keyword{internal}

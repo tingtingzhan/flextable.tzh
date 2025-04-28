@@ -21,10 +21,4 @@ default is the left-hand-side of \link[stats]{aov} formula}
 \description{
 Convert \link[stats]{TukeyHSD} into a \link[flextable]{flextable}.
 }
-\examples{
-summary(fm1 <- aov(breaks ~ wool + tension, data = warpbreaks))
-fm1 |> TukeyHSD(which = 'tension', ordered = TRUE) |> as_flextable()
-fm1 |> TukeyHSD(which = 'tension') |> as_flextable()
-fm1 |> TukeyHSD() |> as_flextable()
-}
 \keyword{internal}

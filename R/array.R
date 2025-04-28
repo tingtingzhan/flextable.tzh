@@ -16,13 +16,6 @@
 #' @returns 
 #' Function [as_flextable.array()] returns a \link[flextable]{flextable}.
 #' 
-#' @examples
-#' VADeaths |> as_flextable() # 'matrix'
-#' occupationalStatus |> as_flextable() # ?flextable:::as_flextable.table
-#' occupationalStatus |> as_flextable.array()
-#' 
-#' tryCatch(as_flextable(UCBAdmissions), error = identity) # ?flextable:::as_flextable.table
-#' tryCatch(as_flextable.array(UCBAdmissions), error = identity)
 #' @keywords internal
 #' @importFrom flextable flextable as_flextable autofit hline vline fix_border_issues align add_header_row merge_h merge_v
 #' @importFrom officer fp_border

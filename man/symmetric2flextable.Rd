@@ -12,17 +12,10 @@ symmetric2flextable(x, ...)
 \item{...}{additional parameters of function \link[base]{format.default}}
 }
 \value{
-Function \link{symmetric2flextable} returns a \link[flextable]{flextable}.
+Function \code{\link[=symmetric2flextable]{symmetric2flextable()}} returns a \link[flextable]{flextable}.
 }
 \description{
 To convert an \link[base]{isSymmetric} matrix to a \link[flextable]{flextable}.
-}
-\examples{
-cov(trees, use = 'pairwise.complete.obs') |>
-  symmetric2flextable(digits = 3L)
-
-cor(trees, use = 'pairwise.complete.obs') |>
-  symmetric2flextable(digits = 3L)
 }
 \seealso{
 \link[stats]{cov2cor}

@@ -13,13 +13,6 @@
 #' 
 #' @param ... additional parameters, currently not in use
 #' 
-#' @examples
-#' # ?stats::aov
-#' op = options(contrasts = c("contr.helmert", "contr.poly"))
-#' aov(yield ~ block + N*P*K, data = npk) |> as_flextable()
-#' aov(yield ~ block + N * P + K, npk) |> as_flextable()
-#' aov(yield ~  N*P*K + Error(block), data = npk) |> # 'aovlist'
-#'  as_flextable()
 #' @name flextable_aov
 #' @keywords internal
 #' @importFrom flextable as_flextable

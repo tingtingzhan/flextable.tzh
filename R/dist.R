@@ -11,9 +11,6 @@
 #' @returns 
 #' Function [as_flextable.dist()] returns a \link[flextable]{flextable}.
 #' 
-#' @examples
-#' # ?stats::dist
-#' matrix(rnorm(100), nrow = 5) |> dist() |> as_flextable()
 #' @keywords internal
 #' @importFrom flextable as_flextable
 #' @export as_flextable.dist

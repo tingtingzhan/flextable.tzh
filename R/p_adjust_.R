@@ -97,26 +97,6 @@ p_adjust_.numeric <- function(x) {
 # \link[stats]{pairwise.wilcox.test} or
 # \link[stats]{pairwise.prop.test}.
 #' 
-#' @examples 
-#' aq = airquality |> 
-#'  within.data.frame(expr = {
-#'   Month = factor(Month, labels = month.abb[5:9])
-#'  }) 
-#' 
-#' aq |>
-#'  with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')) |>
-#'  p_adjust_()
-#' 
-#' aq |>
-#'  with(expr = pairwise.wilcox.test(Ozone, Month, p.adj = 'none')) |>
-#'  suppressWarnings() |> # warnings for ties
-#'  p_adjust_()
-#'
-#' smokers = c(83L, 90L, 129L, 70L)
-#' patients = c(86L, 93L, 136L, 82L)
-#' pairwise.prop.test(smokers, patients, p.adj = 'none') |>
-#'  suppressWarnings() |>
-#'  p_adjust_()
 #' @method p_adjust_ pairwise.htest
 #' @export p_adjust_.pairwise.htest
 #' @export
