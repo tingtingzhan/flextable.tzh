@@ -1,6 +1,4 @@
 
-# old name `as_flextable.array`
-
 #' @title Convert a \link[base]{double} or \link[base]{character} \link[base]{matrix} to \link[flextable]{flextable} 
 #' 
 #' @description ..
@@ -9,7 +7,7 @@
 #' 
 #' @param row.title \link[base]{character} scalar
 #' 
-#' @param hline_i,vline_j ..
+# @param hline_i,vline_j ..
 #' 
 #' @param ... ..
 #' 
@@ -24,7 +22,7 @@
 as_flextable.matrix <- function(
     x, 
     row.title = if (has_DNM[1L]) DNM[1L] else ' ',
-    hline_i = integer(0L), vline_j = integer(0L),
+    #hline_i = integer(0L), vline_j = integer(0L),
     ...
 ) {
   
@@ -66,16 +64,16 @@ as_flextable.matrix <- function(
   # ?flextable::flextable -> ?flextable:::complex_tabpart
   # line 19: `data[col_keys]` will not allow zchar colnames
   
-  if (length(vline_j)) {
-    # row.names becomes col-1
-    # but never put a vline at the right-end of table
-    vline_j <- setdiff(x = vline_j+1L, y = length(x2)) 
-  } # else do nothing
+  #if (length(vline_j)) {
+  #  # row.names becomes col-1
+  #  # but never put a vline at the right-end of table
+  #  vline_j <- setdiff(x = vline_j+1L, y = length(x2)) 
+  #} # else do nothing
   
-  if (length(hline_i)) {
-    # never put an hline at the bottom of table
-    hline_i <- setdiff(x = hline_i, y = nrow(x0))
-  }
+  #if (length(hline_i)) {
+  #  # never put an hline at the bottom of table
+  #  hline_i <- setdiff(x = hline_i, y = nrow(x0))
+  #}
   
   border_hard_ <- fp_border(width = 1.5, color = 'gray40')
   # *looks* like default border used in ?flextable::flextable
@@ -85,8 +83,8 @@ as_flextable.matrix <- function(
   y0 <- x2 |> 
     flextable() |>
     autofit(part = 'all') |>
-    hline(i = hline_i) |>
-    vline(j = vline_j) |>
+    #hline(i = hline_i) |>
+    #vline(j = vline_j) |>
     vline(j = 1L, border = border_hard_)
   
   if (!has_DNM[2L]) return(y0)

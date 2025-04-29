@@ -81,30 +81,41 @@ m |> as_flextable()
 
 ## `data.frame`
 
+### `hline_by()`
+
 ```{r}
-as_flextable_dataframe(warpbreaks, hline_i = ~ tension)
+sleep |>
+  flextable() |> 
+  hline_by(i = ~ group)
 ```
 
+### `format2flextable()`
 
 ```{r}
 library(survival)
-aml2 = within(aml, expr = {
-  edp = Surv(time, status)
-  time = status = NULL
-})
+aml2 = aml |>
+  within.data.frame(expr = {
+    edp = Surv(time, status)
+    time = status = NULL
+  })
 ```
 
 
 ```{r}
 # ?flextable:::as_flextable.data.frame cannot process 'matrix' columns, as of 2024-10-27
 tryCatch(as_flextable(aml2), error = identity)
-
-aml2 |> format2flextable() |> as_flextable()
 ```
 
 
 ```{r}
-as_flextable_dataframe(aml2, hline_i = ~ x)
+aml2 |> 
+  format2flextable() |> 
+  flextable()
+```
+
+
+```{r}
+as_flextable_dataframe(aml2)
 ```
 
 ## `dist`

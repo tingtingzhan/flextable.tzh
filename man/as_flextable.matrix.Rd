@@ -4,20 +4,12 @@
 \alias{as_flextable.matrix}
 \title{Convert a \link[base]{double} or \link[base]{character} \link[base]{matrix} to \link[flextable]{flextable}}
 \usage{
-\method{as_flextable}{matrix}(
-  x,
-  row.title = if (has_DNM[1L]) DNM[1L] else " ",
-  hline_i = integer(0L),
-  vline_j = integer(0L),
-  ...
-)
+\method{as_flextable}{matrix}(x, row.title = if (has_DNM[1L]) DNM[1L] else " ", ...)
 }
 \arguments{
 \item{x}{a \link[base]{double} or \link[base]{character} \link[base]{array}}
 
 \item{row.title}{\link[base]{character} scalar}
-
-\item{hline_i, vline_j}{..}
 
 \item{...}{..}
 }

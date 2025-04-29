@@ -4,19 +4,10 @@
 \alias{as_flextable_dataframe}
 \title{Alternative Conversion from \link[base]{data.frame} to \link[flextable]{flextable}}
 \usage{
-as_flextable_dataframe(
-  x,
-  hline_i = integer(0L),
-  vline_j = attr(x, which = "vline_j", exact = TRUE) \%||\% integer(0L),
-  ...
-)
+as_flextable_dataframe(x, ...)
 }
 \arguments{
 \item{x}{\link[base]{data.frame}}
-
-\item{hline_i}{..}
-
-\item{vline_j}{..}
 
 \item{...}{..}
 }
