@@ -9,7 +9,7 @@
 #' @param ... additional parameters of function `MatchIt:::summary.matchit`
 #' 
 #' @returns 
-#' Functions [as_flextable.matchit] and [as_flextable.summary.matchit] both return a \link[flextable]{flextable}.
+#' Functions [as_flextable.matchit()] and [as_flextable.summary.matchit()] both return a \link[flextable]{flextable}.
 #' 
 #' @name flextable_matchit
 #' @keywords internal
@@ -36,7 +36,7 @@ as_flextable.summary.matchit <- function(x, fmt = '%.3f', ...) {
   storage.mode(ret) <- 'character'
   ret[] <- sprintf(fmt = fmt, out)
   ret[is.na(out)] <- NA_character_
-  ret |> as_flextable.array()
+  ret |> as_flextable.matrix()
 }
 
 

@@ -18,7 +18,7 @@
 \item{fmt}{\link[base]{character} scalar, see function \link[base]{sprintf}}
 }
 \value{
-Functions \link{as_flextable.matchit} and \link{as_flextable.summary.matchit} both return a \link[flextable]{flextable}.
+Functions \code{\link[=as_flextable.matchit]{as_flextable.matchit()}} and \code{\link[=as_flextable.summary.matchit]{as_flextable.summary.matchit()}} both return a \link[flextable]{flextable}.
 }
 \description{
 Convert \link[MatchIt]{matchit} to \link[flextable]{flextable}

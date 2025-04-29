@@ -8,7 +8,7 @@
 #' \link[stats]{pairwise.wilcox.test} or
 #' \link[stats]{pairwise.prop.test}.
 #' 
-#' @param row.title,... additional parameters of function [as_flextable.array()].
+#' @param row.title,... additional parameters of function [as_flextable.matrix()].
 #' 
 #' @returns
 #' Function [as_flextable.pairwise.htest] returns a \link[flextable]{flextable}.
@@ -22,6 +22,6 @@
 as_flextable.pairwise.htest <- function(x, row.title = x$method, ...) {
   x$p.value |>
     label_pvalue_sym()() |>
-    as_flextable.array(row.title = row.title, ...)
+    as_flextable.matrix(row.title = row.title, ...)
 }
 

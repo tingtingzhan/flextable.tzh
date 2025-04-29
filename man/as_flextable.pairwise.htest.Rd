@@ -11,7 +11,7 @@
 \link[stats]{pairwise.wilcox.test} or
 \link[stats]{pairwise.prop.test}.}
 
-\item{row.title, ...}{additional parameters of function \code{\link[=as_flextable.array]{as_flextable.array()}}.}
+\item{row.title, ...}{additional parameters of function \code{\link[=as_flextable.matrix]{as_flextable.matrix()}}.}
 }
 \value{
 Function \link{as_flextable.pairwise.htest} returns a \link[flextable]{flextable}.

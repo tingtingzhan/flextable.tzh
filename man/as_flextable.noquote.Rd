@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{a \link[base]{noquote} object}
 
-\item{...}{additional parameters of function \link{as_flextable.array}}
+\item{...}{additional parameters of function \link{as_flextable.matrix}}
 }
 \value{
 Function \link{as_flextable.noquote} returns a \link[flextable]{flextable}.

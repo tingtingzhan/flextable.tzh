@@ -6,7 +6,7 @@
 #' 
 #' @param x \link[stats]{dist} object
 #' 
-#' @param ... additional parameters of function [as_flextable.array()]
+#' @param ... additional parameters of function [as_flextable.matrix()]
 #' 
 #' @returns 
 #' Function [as_flextable.dist()] returns a \link[flextable]{flextable}.
@@ -25,6 +25,6 @@ as_flextable.dist <- function(x, ...) {
   ret <- array('', dim = .dim, dimnames = list(Labels, Labels))
   lo <- .row(.dim) - .col(.dim) # ?base::lower.tri
   ret[lo > 0L] <- format(x, ...) # ?stats:::format.dist
-  as_flextable.array(ret[-1L, -Size, drop = FALSE], ...)
+  as_flextable.matrix(ret[-1L, -Size, drop = FALSE], ...)
 }
 

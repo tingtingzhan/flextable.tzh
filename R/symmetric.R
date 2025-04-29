@@ -26,11 +26,11 @@ symmetric2flextable <- function(x, ...) {
   if (all(diag(x) == 1)) {
     # e.g., a \link[stats]{cor}relation matrix
     ret[.row(d) <= .col(d)] <- ''
-    return(as_flextable.array(ret[-1L, -d[1L], drop = FALSE]))
+    return(as_flextable.matrix(ret[-1L, -d[1L], drop = FALSE]))
   } 
   
   ret[.row(d) < .col(d)] <- ''
-  return(as_flextable.array(ret))
+  return(as_flextable.matrix(ret))
   
 }
 

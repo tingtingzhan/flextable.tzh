@@ -112,7 +112,7 @@ p_adjust_.pairwise.htest <- function(x) {
   names(pv) <- outer(dnm[[1L]], dnm[[2L]], FUN = paste, sep = ' vs. ')[id]
   
   ret <- p_adjust_.numeric(pv) # 'matrix'
-  names(dimnames(ret)) <- c(x$method, '') # for ?as_flextable.array
+  names(dimnames(ret)) <- c(x$method, '') # for ?as_flextable.matrix
   return(ret)
   
 }

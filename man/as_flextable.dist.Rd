@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{\link[stats]{dist} object}
 
-\item{...}{additional parameters of function \code{\link[=as_flextable.array]{as_flextable.array()}}}
+\item{...}{additional parameters of function \code{\link[=as_flextable.matrix]{as_flextable.matrix()}}}
 }
 \value{
 Function \code{\link[=as_flextable.dist]{as_flextable.dist()}} returns a \link[flextable]{flextable}.

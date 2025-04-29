@@ -43,7 +43,7 @@ as_flextable.TukeyHSD <- function(
   #if (length(x0) == 1L) or not..
   ret0 |>
     do.call(what = rbind) |>
-    as_flextable.array(row.title = row.title) |>
+    as_flextable.matrix(row.title = row.title) |>
     hline(i = vapply(x0, FUN = nrow, FUN.VALUE = NA_integer_)[-length(x0)])
   
 }
