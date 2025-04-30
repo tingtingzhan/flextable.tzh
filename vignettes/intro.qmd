@@ -85,8 +85,6 @@ m = array(letters[1:6], dim = 2:3, dimnames = list(row = letters[1:2], col = LET
 m |> as_flextable()
 ```
 
-
-
 ## `data.frame`
 
 ### `hline_by()`
@@ -108,20 +106,16 @@ aml2 = aml |>
   })
 ```
 
-
 ```{r}
 # ?flextable:::as_flextable.data.frame cannot process 'matrix' columns, as of 2024-10-27
 tryCatch(as_flextable(aml2), error = identity)
 ```
-
 
 ```{r}
 aml2 |> 
   format4flextable() |> 
   flextable()
 ```
-
-
 
 ## `dist`
 
@@ -144,7 +138,6 @@ esoph |>
   as_flextable()
 ```
 
-
 ```{r}
 esoph |>
   xtabs(formula = cbind(ncases, ncontrols) ~ .) |>
@@ -152,12 +145,11 @@ esoph |>
   as_flextable()
 ```
 
-
 ## `aov`
+
 ```{r}
 op = options(contrasts = c("contr.helmert", "contr.poly"))
 ```
-
 
 ```{r}
 aov(yield ~ block + N*P*K, data = npk) |> 
@@ -174,20 +166,19 @@ aov(yield ~  N*P*K + Error(block), data = npk) |> # 'aovlist'
   as_flextable()
 ```
 
-
 ## `TukeyHSD`
+
+The `S3` method dispatch `as_flextable.TukeyHSD()` ..
 
 ```{r}
 fm1 = aov(breaks ~ wool + tension, data = warpbreaks)
 ```
-
 
 ```{r}
 fm1 |> 
   TukeyHSD(which = 'tension') |> 
   as_flextable()
 ```
-
 
 ```{r}
 fm1 |> 
@@ -207,14 +198,10 @@ aq = airquality |>
 
 The S3 method dispatch `as_flextable.pairwise.htest()` ..
 
-
 ```{r}
 aq |>
   as_flextable()
 ```
-
-
-
 
 ```{r}
 aq |>
@@ -222,7 +209,6 @@ aq |>
   label_pvalue_sym()() |>
   as_flextable()
 ```
-
 
 ```{r}
 smokers = c(83L, 90L, 129L, 70L)
@@ -234,7 +220,6 @@ pairwise.prop.test(smokers, patients, p.adj = 'none') |>
   as_flextable()
 ```
 
-
 ## `matchit`
 
 ```{r}
@@ -243,37 +228,30 @@ library(MatchIt)
 # `treat` is the treatment arm (0/1), `re78` is the outcome
 ```
 
-
 ```{r}
 m1 = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde)
 m1 |> as_flextable()
 ```
 
-
 ```{r}
 m1 |> as_flextable(addlvariables = 're78')
 ```
-
 
 ```{r}
 m1 |> Sprintf.matchit()
 ```
 
-
 ```{r}
 m1 |> summary(addlvariables = 're78') |> Sprintf.summary.matchit()
 ```
-
 
 ```{r}
 m2 = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde, ratio = 2)
 ```
 
-
 ```{r}
 m2 |> as_flextable()
 ```
-
 
 ```{r}
 m2 |> as_flextable(addlvariables = 're78')
@@ -287,17 +265,13 @@ m2 |> as_flextable(addlvariables = 're78')
 subset_(trees, Girth > 9 & Height < 70)
 ```
 
-
 ```{r}
 subset_(swiss, Fertility > 80, avoid = 'Catholic')
 ```
 
-
 ```{r}
 subset_(warpbreaks, wool == 'K')
 ```
-
-
 
 ## `symmetric2flextable()`
 
@@ -306,9 +280,7 @@ cov(trees, use = 'pairwise.complete.obs') |>
   symmetric2flextable(digits = 3L)
 ```
 
-
 ```{r}
 cor(trees, use = 'pairwise.complete.obs') |>
   symmetric2flextable(digits = 3L)
 ```
-

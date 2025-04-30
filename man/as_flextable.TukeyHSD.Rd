@@ -4,17 +4,10 @@
 \alias{as_flextable.TukeyHSD}
 \title{Convert \link[stats]{TukeyHSD} into \link[flextable]{flextable}}
 \usage{
-\method{as_flextable}{TukeyHSD}(
-  x,
-  row.title = deparse1(attr(x, which = "orig.call", exact = TRUE)$formula[[2L]]),
-  ...
-)
+\method{as_flextable}{TukeyHSD}(x, ...)
 }
 \arguments{
 \item{x}{a \link[stats]{TukeyHSD}}
-
-\item{row.title}{\link[base]{character} scalar,
-default is the left-hand-side of \link[stats]{aov} formula}
 
 \item{...}{additional parameters, currently not in use}
 }

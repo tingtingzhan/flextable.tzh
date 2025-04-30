@@ -25,18 +25,25 @@ as_flextable.matchit <- function(x, ...) {
 }
 
 #' @rdname flextable_matchit
-#' @importFrom flextable as_flextable
+#' @importFrom flextable as_flextable flextable colformat_double vline autofit
 #' @export as_flextable.summary.matchit
 #' @export
 as_flextable.summary.matchit <- function(x, fmt = '%.3f', ...) {
   mv <- all.vars(x$call$formula[[3L]]) # covariates to be matched; (m)atched-co(v)ariates
   
-  out <- x$sum.matched # 'matrix'
-  ret <- out
-  storage.mode(ret) <- 'character'
-  ret[] <- sprintf(fmt = fmt, out)
-  ret[is.na(out)] <- NA_character_
-  ret |> as_flextable.matrix()
+  z <- x$sum.matched |> # 'matrix'
+    as.data.frame.matrix(make.names = FALSE)
+  
+  data.frame(
+    ' ' = rownames(z),
+    z,
+    check.names = FALSE
+  ) |>
+    flextable() |>
+    colformat_double(digits = 3L) |>
+    vline(j = 1L) |>
+    autofit(part = 'all')
+  
 }
 
 
