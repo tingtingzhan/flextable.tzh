@@ -118,22 +118,21 @@ aml2 |>
 
 ## `dist`
 
+The `S3` method dispatch `as_flextable.dist()` ..
+
 ```{r}
-matrix(rnorm(100), nrow = 5) |> 
+USJudgeRatings[1:4,] |> 
   dist() |> 
   as_flextable()
 ```
 
 ## `ftable`
 
-```{r}
-esoph0 = esoph[c('tobgp', 'ncases', 'ncontrols')]
-```
-
+The `S3` method dispatch `as_flextable.ftable()` ..
 
 ```{r}
-esoph0 |>
-  xtabs(formula = cbind(ncases, ncontrols) ~ . ) |>
+esoph |>
+  xtabs(formula = cbind(ncases, ncontrols) ~ tobgp) |>
   ftable() |>
   as_flextable()
 ```
@@ -173,12 +172,6 @@ aov(yield ~  N*P*K + Error(block), data = npk) |> # 'aovlist'
 
 ```{r}
 fm1 = aov(breaks ~ wool + tension, data = warpbreaks)
-```
-
-```{r}
-fm1 |> 
-  TukeyHSD(which = 'tension', ordered = TRUE) |> 
-  as_flextable()
 ```
 
 
