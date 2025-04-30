@@ -1,14 +1,14 @@
 
-#' @title format2flextable
+#' @title format4flextable
 #' 
 #' @param x \link[base]{data.frame}
 #' 
 #' @returns 
-#' Function [format2flextable()] returns a \link[base]{data.frame}
+#' Function [format4flextable()] returns a \link[base]{data.frame}
 #' 
 #' @keywords internal
 #' @export
-format2flextable <- function(x) {
+format4flextable <- function(x) {
   x[] <- lapply(x, FUN = \(ix) {
     if (inherits(ix, what = 'Surv')) {
       format(ix) 

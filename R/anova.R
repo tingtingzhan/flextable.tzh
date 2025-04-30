@@ -15,20 +15,30 @@
 #' 
 #' @name flextable_aov
 #' @keywords internal
-#' @importFrom flextable as_flextable
+#' @importFrom flextable as_flextable flextable autofit
 #' @importFrom scales.tzh label_pvalue_sym
 #' @export as_flextable.anova
 #' @export
 as_flextable.anova <- function(x, fmt = '%.3f', row.title = ' ', ...) {
   # ?stats:::print.anova, then ?stats::printCoefmat
   x0 <- as.data.frame(x)
-  x0[2:4] <- lapply(x0[2:4], FUN = sprintf, fmt = fmt)
+  x0[2:4] <- x0[2:4] |>
+    lapply(FUN = sprintf, fmt = fmt)
   x0[['F value']][x0[['F value']] == 'NA'] <- ''
-  x0[['Pr(>F)']] <- x[['Pr(>F)']] |> label_pvalue_sym()()
-  .rowNamesDF(x0) <- x |> row.names.data.frame() |> trimws()
-  x1 <- data.frame(' ' = row.names.data.frame(x0), x0, row.names = NULL, check.names = FALSE, fix.empty.names = FALSE, stringsAsFactors = FALSE)
+  x0[['Pr(>F)']] <- x[['Pr(>F)']] |> 
+    label_pvalue_sym()()
+  .rowNamesDF(x0) <- x |> 
+    row.names.data.frame() |> 
+    trimws()
+  x1 <- data.frame(
+    ' ' = row.names.data.frame(x0), 
+    x0, 
+    row.names = NULL, check.names = FALSE, 
+    fix.empty.names = FALSE, stringsAsFactors = FALSE)
   names(x1)[1L] <- row.title
-  as_flextable_dataframe(x1)
+  x1 |>
+    flextable() |>
+    autofit(part = 'all')
 }
 
 #' @rdname flextable_aov

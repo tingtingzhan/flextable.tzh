@@ -89,7 +89,7 @@ sleep |>
   hline_by(i = ~ group)
 ```
 
-### `format2flextable()`
+### `format4flextable()`
 
 ```{r}
 library(survival)
@@ -109,14 +109,11 @@ tryCatch(as_flextable(aml2), error = identity)
 
 ```{r}
 aml2 |> 
-  format2flextable() |> 
+  format4flextable() |> 
   flextable()
 ```
 
 
-```{r}
-as_flextable_dataframe(aml2)
-```
 
 ## `dist`
 
