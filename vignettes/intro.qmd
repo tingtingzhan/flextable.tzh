@@ -31,6 +31,7 @@ Examples in this vignette require that the `search` path has
 ```{r}
 library(flextable)
 library(flextable.tzh)
+library(scales.tzh)
 ```
 
 ```{r}
@@ -200,13 +201,15 @@ fm1 |>
 aq = airquality |> 
   within.data.frame(expr = {
     Month = factor(Month, labels = month.abb[5:9])
-  })
+  }) |>
+  with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none'))
 ```
+
+The S3 method dispatch `as_flextable.pairwise.htest()` ..
 
 
 ```{r}
 aq |>
-  with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none')) |>
   as_flextable()
 ```
 
@@ -215,9 +218,9 @@ aq |>
 
 ```{r}
 aq |>
-  with(expr = pairwise.wilcox.test(Ozone, Month, p.adj = 'none')) |>
-  suppressWarnings() |> # warnings for ties
-  p_adjust_()
+  p_adjust_() |>
+  label_pvalue_sym()() |>
+  as_flextable()
 ```
 
 
@@ -226,7 +229,9 @@ smokers = c(83L, 90L, 129L, 70L)
 patients = c(86L, 93L, 136L, 82L)
 pairwise.prop.test(smokers, patients, p.adj = 'none') |>
   suppressWarnings() |>
-  p_adjust_()
+  p_adjust_() |>
+  label_pvalue_sym()() |>
+  as_flextable()
 ```
 
 

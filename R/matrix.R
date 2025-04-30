@@ -25,12 +25,9 @@ as_flextable.matrix <- function(
     #hline_i = integer(0L), vline_j = integer(0L),
     ...
 ) {
-  
-  
+
   if (typeof(x) == 'integer') {
-    return(x |> 
-             as.table() |> 
-             as_flextable(...)) # flextable:::as_flextable.table
+    .Defunct(msg = '|> as.table() |> flextable:::as_flextable.table(...)')
   }
   
   x_orig <- x # just in case
@@ -108,19 +105,16 @@ as_flextable.matrix <- function(
 #' 
 #' @param x a \link[base]{noquote} object
 #' 
-#' @param ... additional parameters of function [as_flextable.matrix]
+#' @param ... additional parameters of S3 generic \link[flextable]{as_flextable}
 #' 
 #' @returns 
-#' Function [as_flextable.noquote] returns a \link[flextable]{flextable}.
+#' Function [as_flextable.noquote()] returns a \link[flextable]{flextable}.
 #' 
 #' @keywords internal
 #' @importFrom flextable as_flextable
 #' @export as_flextable.noquote
 #' @export
 as_flextable.noquote <- function(x, ...) {
-  if (!is.matrix(x)) stop('input must be \'matrix\'')
-  x |>
-    unclass() |>
-    as_flextable.matrix(...)
+  x |> unclass() |> as_flextable(...)
 }
 

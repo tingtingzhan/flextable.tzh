@@ -22,7 +22,7 @@ All method dispatches of generic function \link{p_adjust_} return a \link[base]{
 Adjusted \eqn{p}-values in all correction methods.
 }
 \details{
-Function \link{p_adjust_.numeric} speeds up function \link[stats]{p.adjust}.
+Function \code{\link[=p_adjust_.numeric]{p_adjust_.numeric()}} speeds up function \link[stats]{p.adjust}.
 }
 \examples{
 \donttest{for (i in seq_len(10L)) {

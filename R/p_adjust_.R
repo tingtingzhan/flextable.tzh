@@ -7,7 +7,7 @@
 #' @param x see **Usage**
 #' 
 #' @details 
-#' Function [p_adjust_.numeric] speeds up function \link[stats]{p.adjust}. 
+#' Function [p_adjust_.numeric()] speeds up function \link[stats]{p.adjust}. 
 #' 
 #' @returns
 #' All method dispatches of generic function [p_adjust_] return a \link[base]{matrix} of adjusted \eqn{p}-values using all available \link[stats]{p.adjust.methods}.
