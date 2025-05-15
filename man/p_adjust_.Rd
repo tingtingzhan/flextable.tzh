@@ -21,21 +21,4 @@ All method dispatches of generic function \link{p_adjust_} return a \link[base]{
 \description{
 Adjusted \eqn{p}-values in all correction methods.
 }
-\details{
-Function \code{\link[=p_adjust_.numeric]{p_adjust_.numeric()}} speeds up function \link[stats]{p.adjust}.
-}
-\examples{
-\donttest{for (i in seq_len(10L)) {
- n = sample(20:30, size = 1L)
- p = runif(n, min = .Machine$double.eps, max = 1 - .Machine$double.eps)
- (tmp = p_adjust_(p))
- stopifnot(identical(tmp, cbind(
-  holm = p.adjust(p, 'holm'),
-  hochberg = p.adjust(p, 'hochberg'),
-  hommel = p.adjust(p, 'hommel'),
-  bonferroni = p.adjust(p, 'bonferroni'),
-  BH = p.adjust(p, 'BH'),
-  BY = p.adjust(p, 'BY'),
-  none = p)))
-}}
-}
+\keyword{internal}
