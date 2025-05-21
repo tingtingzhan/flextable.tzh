@@ -42,35 +42,28 @@ library(knitr) # for tables in this vignette
 
 ## Terms and Abbreviations
 
-```{r}
-#| echo: false
-#| results: asis
-c(
-  '[|>](https://search.r-project.org/R/refmans/base/html/pipeOp.html)', 'Forward pipe operator introduced in `R` 4.1.0',
-  '`$`', '[Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object',
-  '[`aov`](https://search.r-project.org/R/refmans/stats/html/aov.html), [`anova`](https://search.r-project.org/R/refmans/stats/html/anova.html)', 'Analysis of variance (tables)',
-  '`CRAN`, `R`', '[The Comprehensive R Archive Network](https://cran.r-project.org)',
-  '[`class`](https://search.r-project.org/R/refmans/base/html/class.html)', 'Object class',
-  '[`data.frame`](https://search.r-project.org/R/refmans/base/html/data.frame.html)', 'Data frame', 
-  '[`dist`](https://search.r-project.org/R/refmans/stats/html/dist.html)', 'Distance Matrix',
-  '[`flextable`](https://search.r-project.org/CRAN/refmans/flextable/html/flextable.html), [`as_flextable`](https://search.r-project.org/CRAN/refmans/flextable/html/as_flextable.html)', '(Convert objects into) flexable table',
-  '[`ftable`](https://search.r-project.org/R/refmans/stats/html/ftable.html)', 'Flat contingency tables',
-  '[`L`](https://adv-r.hadley.nz/vectors-chap.html#atomic-vectors)', '[Integer](https://search.r-project.org/R/refmans/base/html/integer.html) notation',
-  '[`label_percent`](https://search.r-project.org/CRAN/refmans/scales/html/label_percent.html)', 'Label for percentages',
-  '[`matchit`](https://search.r-project.org/CRAN/refmans/MatchIt/html/matchit.html)', 'Matching for causal inference',
-  '[`matrix`](https://search.r-project.org/R/refmans/base/html/matrix.html)', 'Matrix',
-  '[`p.adjust`](https://search.r-project.org/R/refmans/stats/html/p.adjust.html)', 'Adjust $p$-values for multiple comparisons',
-  '`pairwise.htest`', 'Returned object class of [`pairwise.prop.test`](https://search.r-project.org/R/refmans/stats/html/pairwise.prop.test.html), [`pairwise.t.test`](https://search.r-project.org/R/refmans/stats/html/pairwise.t.test.html), [`pairwise.wilcox.test`](https://search.r-project.org/R/refmans/stats/html/pairwise.wilcox.test.html)', 
-  '`S3`, `generic`, [`methods`](https://search.r-project.org/R/refmans/utils/html/methods.html)', '`S3` object oriented system, [`UseMethod`](https://search.r-project.org/R/refmans/base/html/UseMethod.html); [`getS3method`](https://search.r-project.org/R/refmans/utils/html/getS3method.html); <https://adv-r.hadley.nz/s3.html>',
-  '[`search`](https://search.r-project.org/R/refmans/base/html/search.html)', 'Search path',
-  '[`TukeyHSD`](https://search.r-project.org/R/refmans/stats/html/TukeyHSD.html)', 'Tukey honest significant differences',
-  '[`typeof`](https://search.r-project.org/R/refmans/base/html/typeof.html)', 'Type of an object'
-) |>
-  matrix(nrow = 2L, dimnames = list(c('Term / Abbreviation', 'Description'), NULL)) |>
-  t.default() |>
-  as.data.frame.matrix() |> 
-  kable() 
-```
+| Term / Abbreviation | Description |
+|------------------------------------|------------------------------------|
+| [`|>`](https://search.r-project.org/R/refmans/base/html/pipeOp.html) | Forward pipe operator introduced in `R` 4.1.0 |
+| `$` | [Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object', |
+| [`aov`](https://search.r-project.org/R/refmans/stats/html/aov.html) | [`anova`](https://search.r-project.org/R/refmans/stats/html/anova.html) |
+| `CRAN`, `R` | [The Comprehensive R Archive Network](https://cran.r-project.org) |
+| [`class`](https://search.r-project.org/R/refmans/base/html/class.html) | Object class |
+| [`data.frame`](https://search.r-project.org/R/refmans/base/html/data.frame.html) | Data frame |
+| [`dist`](https://search.r-project.org/R/refmans/stats/html/dist.html) | Distance Matrix |
+| [`flextable`](https://search.r-project.org/CRAN/refmans/flextable/html/flextable.html), [`as_flextable`](https://search.r-project.org/CRAN/refmans/flextable/html/as_flextable.html) | (Convert objects into) flexable table |
+| [`ftable`](https://search.r-project.org/R/refmans/stats/html/ftable.html) | Flat contingency tables |
+| [`L`](https://adv-r.hadley.nz/vectors-chap.html#atomic-vectors) | [Integer](https://search.r-project.org/R/refmans/base/html/integer.html) notation |
+| [`label_percent`](https://search.r-project.org/CRAN/refmans/scales/html/label_percent.html) | Label for percentages |
+| [`matchit`](https://search.r-project.org/CRAN/refmans/MatchIt/html/matchit.html) | Matching for causal inference |
+| [`matrix`](https://search.r-project.org/R/refmans/base/html/matrix.html) | Matrix |
+| [`p.adjust`](https://search.r-project.org/R/refmans/stats/html/p.adjust.html) | Adjust $p$-values for multiple comparisons |
+| `pairwise.htest` | Returned object class of [`pairwise.prop.test`](https://search.r-project.org/R/refmans/stats/html/pairwise.prop.test.html), [`pairwise.t.test`](https://search.r-project.org/R/refmans/stats/html/pairwise.t.test.html), [`pairwise.wilcox.test`](https://search.r-project.org/R/refmans/stats/html/pairwise.wilcox.test.html) |
+| `S3`, `generic`, [`methods`](https://search.r-project.org/R/refmans/utils/html/methods.html) | `S3` object oriented system, [`UseMethod`](https://search.r-project.org/R/refmans/base/html/UseMethod.html); [`getS3method`](https://search.r-project.org/R/refmans/utils/html/getS3method.html); <https://adv-r.hadley.nz/s3.html> |
+| [`search`](https://search.r-project.org/R/refmans/base/html/search.html) | Search path |
+| [`TukeyHSD`](https://search.r-project.org/R/refmans/stats/html/TukeyHSD.html) | Tukey honest significant differences |
+| [`typeof`](https://search.r-project.org/R/refmans/base/html/typeof.html) | Type of an object |
+
 
 # Additional Dispatches for `S3` Generic `as_flextable()`
 
