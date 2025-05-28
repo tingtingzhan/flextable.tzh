@@ -52,12 +52,12 @@ subset_ <- function(
 
   select <- c(
     if (!missing(select)) select, 
-    if (!missing(select_pattern)) grep(select_pattern, x = nm, value = TRUE)
+    if (!missing(select_pattern)) grepv(select_pattern, x = nm)
   )
   
   avoid <- c(
     if (!missing(avoid)) avoid, 
-    if (!missing(avoid_pattern)) grep(avoid_pattern, x = nm, value = TRUE)
+    if (!missing(avoid_pattern)) grepv(avoid_pattern, x = nm)
   )
   
   var_subset <- intersect(all.vars(.subset), nm)
