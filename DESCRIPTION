@@ -2,7 +2,7 @@ Package: flextable.tzh
 Type: Package
 Title: flextable.tzh
 Version: 0.1.0
-Date: 2025-04-28
+Date: 2025-05-30
 Description: Extension to package 'flextable'.
 Authors@R: c(person(given = 'Tingting', family = 'Zhan',
       role = c('aut', 'cre'), email =
@@ -14,6 +14,6 @@ RoxygenNote: 7.3.2
 Encoding: UTF-8
 License: GPL-2
 Depends: R (>= 4.5)
-Imports: cli, flextable (== 0.9.8), officer (== 0.6.9), zoo (== 1.8.14), scales, scales.tzh
+Imports: cli, flextable (== 0.9.8), officer (== 0.6.10), zoo (== 1.8.14), scales, scales.tzh
 Suggests: survival, MatchIt, knitr, quarto, rmarkdown
 VignetteBuilder: quarto
