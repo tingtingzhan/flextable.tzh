@@ -3,7 +3,7 @@ Type: Package
 Title: flextable.tzh
 Version: 0.1.0
 Date: 2025-05-30
-Description: Extension to package 'flextable'.
+Description: T. Zhan's extension to David Gohel's package 'flextable'.
 Authors@R: c(person(given = 'Tingting', family = 'Zhan',
       role = c('aut', 'cre'), email =
       'tingtingzhan@gmail.com', comment = c(ORCID =

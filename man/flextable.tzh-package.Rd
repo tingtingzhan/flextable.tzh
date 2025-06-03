@@ -6,7 +6,7 @@
 \alias{flextable.tzh-package}
 \title{flextable.tzh: flextable.tzh}
 \description{
-Extension to package 'flextable'.
+T. Zhan's extension to David Gohel's package 'flextable'.
 }
 \note{
 haha
