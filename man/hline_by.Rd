@@ -2,9 +2,15 @@
 % Please edit documentation in R/hline_by.R
 \name{hline_by}
 \alias{hline_by}
+\alias{hline_by.data.frame}
+\alias{hline_by.flextable}
 \title{hline_by}
 \usage{
 hline_by(x, i, ...)
+
+\method{hline_by}{data.frame}(x, ...)
+
+\method{hline_by}{flextable}(x, i, ...)
 }
 \arguments{
 \item{x}{a \link[flextable]{flextable}}
@@ -15,5 +21,15 @@ hline_by(x, i, ...)
 }
 \description{
 hline_by
+}
+\examples{
+datasets::sleep |>
+ hline_by(i = ~ group)
+
+datasets::women |>
+ hline_by(i = ~ cut(height, breaks = c(55, 60, 65, 70)))
+
+datasets::Puromycin |>
+ hline_by(i = ~ state + conc)
 }
 \keyword{internal}

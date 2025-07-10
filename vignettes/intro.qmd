@@ -82,10 +82,20 @@ m |> as_flextable()
 ### `hline_by()`
 
 ```{r}
-sleep |>
-  flextable() |> 
+datasets::sleep |>
   hline_by(i = ~ group)
 ```
+
+```{r}
+datasets::women |>
+  hline_by(i = ~ cut(height, breaks = c(55, 60, 65, 70)))
+```
+
+```{r}
+datasets::Puromycin |>
+  hline_by(i = ~ state + conc)
+```
+
 
 ### `format4flextable()`
 

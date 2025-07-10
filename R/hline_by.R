@@ -8,43 +8,58 @@
 #' 
 #' @param ... additional parameters, currently no use
 #' 
+#' @examples
+#' datasets::sleep |>
+#'  hline_by(i = ~ group)
+#' 
+#' datasets::women |>
+#'  hline_by(i = ~ cut(height, breaks = c(55, 60, 65, 70)))
+#' 
+#' datasets::Puromycin |>
+#'  hline_by(i = ~ state + conc)
 #' @keywords internal
+#' @name hline_by
 #' @export
-hline_by <- function(x, i, ...) {
+hline_by <- function(x, i, ...) UseMethod(generic = 'hline_by')
+
+#' @rdname hline_by
+#' @importFrom flextable flextable autofit
+#' @export hline_by.data.frame
+#' @export
+hline_by.data.frame <- function(x, ...) {
+  x |>
+    flextable() |>
+    autofit(part = 'all') |>
+    hline_by.flextable(...)
+}
+
+
+#' @rdname hline_by
+#' @export hline_by.flextable
+#' @export
+hline_by.flextable <- function(x, i, ...) {
   
   d <- x$body$dataset
   if (!is.data.frame(d)) stop('wont happen')
   
   nr <- .row_names_info(d, type = 2L)
   
-  if (!is.call(i) || i[[1L]] != '~') stop('argument `i` must be formula')
-  # e.g., `i` being `~ x1 + x2`
-  # ?base::sort_by.data.frame sort by `x1` first, then `x2`
-  # ?base::.formula2varlist returns a list of name c('x1', 'x2')
-  # ?base::split.default splits by `x1` varies fast, and `x2` varies slow; which is not want I want!!! 
-  # therefore, I use ?base::rev.default, which is super smart!!
-  d_ <- d |> 
-    sort_by.data.frame(y = i) # various attributes retained
-  if (!identical(d, d_)) stop('sort original data.frame first..')
-  # tzh does not know how to [sort_by.flextable] 
+  if (!is.call(i) || i[[1L]] != '~') stop('`i` must be formula')
   
-  f <- d |> 
-    .formula2varlist(formula = i) |> 
-    rev.default()
+  # see inside ?base::sort_by.data.frame
+  f <- i |>
+    .formula2varlist(formula = _, data = d) |> # always 'list'
+    unname()
   
-  h <- nr |>
-    seq_len() |>
-    split.default(f = f) |>
-    lengths(use.names = FALSE) |>
-    cumsum()
+  o <- do.call(what = order, args = f)
+  if (!identical(o, seq_along(o))) stop('sort original data.frame first..')
   
-  if (!length(h)) h <- integer(0L)
-  
-  if (!is.integer(h)) stop('`h` must be convertible to integer')
-  h <- setdiff(h, nr)
-  
-  x |>
-    hline(i = h)
+  f |> 
+    interaction(drop = TRUE, lex.order = FALSE) |> # see inside ?base::split.default
+    table() |> # already sorted
+    cumsum() |>
+    setdiff(y = nr) |>
+    hline(x = x, i = _)
   
 }
 
