@@ -93,9 +93,8 @@ datasets::women |>
 
 ```{r}
 datasets::Puromycin |>
-  hline_by(i = ~ state + conc)
+hline_by(i = ~ state + conc)
 ```
-
 
 ### `format4flextable()`
 
