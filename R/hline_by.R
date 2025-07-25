@@ -2,7 +2,7 @@
 
 #' @title hline_by
 #' 
-#' @param x a \link[flextable]{flextable}
+#' @param x a \link[base]{data.frame} or \link[flextable]{flextable}
 #' 
 #' @param i \link[stats]{formula}
 #' 
@@ -20,7 +20,7 @@
 #' @keywords internal
 #' @name hline_by
 #' @export
-hline_by <- function(x, i, ...) UseMethod(generic = 'hline_by')
+hline_by <- function(x, ...) UseMethod(generic = 'hline_by')
 
 #' @rdname hline_by
 #' @importFrom flextable flextable autofit

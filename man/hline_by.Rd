@@ -6,18 +6,18 @@
 \alias{hline_by.flextable}
 \title{hline_by}
 \usage{
-hline_by(x, i, ...)
+hline_by(x, ...)
 
 \method{hline_by}{data.frame}(x, ...)
 
 \method{hline_by}{flextable}(x, i, ...)
 }
 \arguments{
-\item{x}{a \link[flextable]{flextable}}
-
-\item{i}{\link[stats]{formula}}
+\item{x}{a \link[base]{data.frame} or \link[flextable]{flextable}}
 
 \item{...}{additional parameters, currently no use}
+
+\item{i}{\link[stats]{formula}}
 }
 \description{
 hline_by
