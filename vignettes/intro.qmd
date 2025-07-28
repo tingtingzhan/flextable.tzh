@@ -260,7 +260,7 @@ cor(trees, use = 'pairwise.complete.obs') |>
 ## Terms and Abbreviations
 
 | Term / Abbreviation | Description |
-|------------------------------------|------------------------------------|
+|----|----|
 | [`|>`](https://search.r-project.org/R/refmans/base/html/pipeOp.html) | Forward pipe operator introduced in `R` 4.1.0 |
 | `$` | [Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object', |
 | [`aov`](https://search.r-project.org/R/refmans/stats/html/aov.html) | [`anova`](https://search.r-project.org/R/refmans/stats/html/anova.html) |

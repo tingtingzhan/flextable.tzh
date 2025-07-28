@@ -30,6 +30,7 @@ p_adjust_.numeric <- function(x) {
     do.call(what = cbind) |>
     pmin(1)
   colnames(ret) <- method
+  class(ret) <- 'p_adjust'
   return(ret)
   
 }
@@ -66,8 +67,23 @@ p_adjust_.pairwise.htest <- function(x) {
 
 
 
-
-
+#' @title [as_flextable.p_adjust]
+#' 
+#' @param x `p_adjust` object
+#' 
+#' @param ... ..
+#' 
+#' @keywords internal
+#' @importFrom flextable as_flextable
+#' @importFrom rmd.tzh label_pvalue_sym
+#' @export as_flextable.p_adjust
+#' @export
+as_flextable.p_adjust <- function(x, ...) {
+  x |>
+    unclass() |> # back to 'matrix'
+    label_pvalue_sym()() |> 
+    as_flextable.matrix()
+}
 
 
 
