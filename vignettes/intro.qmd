@@ -32,7 +32,6 @@ Examples in this vignette require that the `search` path has
 library(flextable.tzh)
 ```
 
-
 # Additional Dispatches for `S3` Generic `as_flextable()`
 
 ## `matrix`
@@ -77,7 +76,6 @@ aml2 = aml |>
 ```
 
 Function `flextable:::as_flextable.data.frame()` cannot process `matrix` columns, as of version `r packageVersion('flextable')`.
-
 
 ```{r}
 tryCatch(as_flextable(aml2), error = identity)
@@ -255,13 +253,12 @@ cor(trees, use = 'pairwise.complete.obs') |>
   symmetric2flextable(digits = 3L)
 ```
 
-
-# Appendix 
+# Appendix
 
 ## Terms and Abbreviations
 
 | Term / Abbreviation | Description |
-|------------------------------------|------------------------------------|
+|----|----|
 | [`|>`](https://search.r-project.org/R/refmans/base/html/pipeOp.html) | Forward pipe operator introduced in `R` 4.1.0 |
 | `$` | [Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object', |
 | [`aov`](https://search.r-project.org/R/refmans/stats/html/aov.html) | [`anova`](https://search.r-project.org/R/refmans/stats/html/anova.html) |
@@ -281,4 +278,3 @@ cor(trees, use = 'pairwise.complete.obs') |>
 | [`search`](https://search.r-project.org/R/refmans/base/html/search.html) | Search path |
 | [`TukeyHSD`](https://search.r-project.org/R/refmans/stats/html/TukeyHSD.html) | Tukey honest significant differences |
 | [`typeof`](https://search.r-project.org/R/refmans/base/html/typeof.html) | Type of an object |
-

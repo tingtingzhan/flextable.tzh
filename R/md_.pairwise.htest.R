@@ -24,6 +24,7 @@
 md_.pairwise.htest <- function(x, xnm, ...) {
   c(
     '```{r}', # multiple ?flextable::flextable
+    '#| echo: false', 
     sprintf(fmt = '(%s) |> as_flextable.pairwise.htest()', xnm), 
     sprintf(fmt = '(%s) |> p_adjust_.pairwise.htest() |> label_pvalue_sym()() |> as_flextable.matrix()', xnm), 
     '```'
