@@ -1,6 +1,7 @@
 
 
 # @importFrom parallel detectCores
+# @importFrom flextable set_flextable_defaults
 .onLoad <- function(libname, pkgname) {
   
   Sys.setenv(
@@ -13,6 +14,8 @@
     # to disable "checking for future file timestamps" in R Check
     
   ) 
+  
+  # set_flextable_defaults(digits = 3L) # no use!!!
   
 }
 

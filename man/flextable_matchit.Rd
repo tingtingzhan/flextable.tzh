@@ -8,14 +8,12 @@
 \usage{
 \method{as_flextable}{matchit}(x, ...)
 
-\method{as_flextable}{summary.matchit}(x, fmt = "\%.3f", ...)
+\method{as_flextable}{summary.matchit}(x, ...)
 }
 \arguments{
 \item{x}{a \link[MatchIt]{matchit} object}
 
 \item{...}{additional parameters of function \code{MatchIt:::summary.matchit}}
-
-\item{fmt}{\link[base]{character} scalar, see function \link[base]{sprintf}}
 }
 \value{
 Functions \code{\link[=as_flextable.matchit]{as_flextable.matchit()}} and \code{\link[=as_flextable.summary.matchit]{as_flextable.summary.matchit()}} both return a \link[flextable]{flextable}.

@@ -9,7 +9,7 @@
 \alias{as_flextable.summary.aovlist}
 \title{Convert \link[stats]{aov}, \link[stats]{anova} Objects To \link[flextable]{flextable}}
 \usage{
-\method{as_flextable}{anova}(x, fmt = "\%.3f", row.title = " ", ...)
+\method{as_flextable}{anova}(x, row.title = " ", ...)
 
 \method{as_flextable}{aov}(x, ...)
 
@@ -21,8 +21,6 @@
 }
 \arguments{
 \item{x}{\link[stats]{aov}, \link[stats]{anova}, or their \link[base]{summary} returns}
-
-\item{fmt}{\link[base]{character} scalar, see function \link[base]{sprintf}}
 
 \item{row.title}{\link[base]{character} scalar}
 

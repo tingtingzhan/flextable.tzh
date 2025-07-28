@@ -4,8 +4,6 @@
 #' 
 #' @param x a \link[MatchIt]{matchit} object
 #' 
-#' @param fmt \link[base]{character} scalar, see function \link[base]{sprintf}
-#' 
 #' @param ... additional parameters of function `MatchIt:::summary.matchit`
 #' 
 #' @returns 
@@ -28,7 +26,7 @@ as_flextable.matchit <- function(x, ...) {
 #' @importFrom flextable as_flextable flextable colformat_double vline autofit
 #' @export as_flextable.summary.matchit
 #' @export
-as_flextable.summary.matchit <- function(x, fmt = '%.3f', ...) {
+as_flextable.summary.matchit <- function(x, ...) {
   mv <- all.vars(x$call$formula[[3L]]) # covariates to be matched; (m)atched-co(v)ariates
   
   z <- x$sum.matched |> # 'matrix'

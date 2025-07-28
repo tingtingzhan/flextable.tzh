@@ -192,9 +192,11 @@ pairwise.prop.test(smokers, patients, p.adj = 'none') |>
 
 ```{r}
 library(MatchIt)
-# ?MatchIt::lalonde 
-# `treat` is the treatment arm (0/1), `re78` is the outcome
 ```
+
+`?MatchIt::lalonde`
+
+`treat` is the treatment arm (0/1), `re78` is the outcome.
 
 ```{r}
 m1 = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde)
@@ -258,7 +260,7 @@ cor(trees, use = 'pairwise.complete.obs') |>
 ## Terms and Abbreviations
 
 | Term / Abbreviation | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | [`|>`](https://search.r-project.org/R/refmans/base/html/pipeOp.html) | Forward pipe operator introduced in `R` 4.1.0 |
 | `$` | [Extract](https://search.r-project.org/R/refmans/base/html/Extract.html) parts of an object', |
 | [`aov`](https://search.r-project.org/R/refmans/stats/html/aov.html) | [`anova`](https://search.r-project.org/R/refmans/stats/html/anova.html) |
