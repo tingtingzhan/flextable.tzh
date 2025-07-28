@@ -12,7 +12,7 @@
 #' @keywords internal
 #' @importFrom flextable as_flextable flextable autofit hline vline
 #' @importFrom scales label_percent
-#' @importFrom scales.tzh label_pvalue_sym
+#' @importFrom rmd.tzh label_pvalue_sym
 #' @export as_flextable.TukeyHSD
 #' @export
 as_flextable.TukeyHSD <- function(x, ...) {

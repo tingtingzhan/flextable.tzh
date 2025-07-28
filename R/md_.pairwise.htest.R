@@ -27,6 +27,7 @@ md_.pairwise.htest <- function(x, xnm, ...) {
     sprintf(fmt = '(%s) |> as_flextable.pairwise.htest()', xnm), 
     sprintf(fmt = '(%s) |> p_adjust_.pairwise.htest() |> label_pvalue_sym()() |> as_flextable.matrix()', xnm), 
     '```'
-  ) |> new(Class = 'md_lines')
+  ) |> 
+    new(Class = 'md_lines')
 }
 

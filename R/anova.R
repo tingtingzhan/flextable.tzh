@@ -16,7 +16,7 @@
 #' @name flextable_aov
 #' @keywords internal
 #' @importFrom flextable as_flextable flextable autofit
-#' @importFrom scales.tzh label_pvalue_sym
+#' @importFrom rmd.tzh label_pvalue_sym
 #' @export as_flextable.anova
 #' @export
 as_flextable.anova <- function(x, fmt = '%.3f', row.title = ' ', ...) {

@@ -15,7 +15,7 @@
 #' 
 #' @keywords internal
 #' @importFrom flextable as_flextable
-#' @importFrom scales.tzh label_pvalue_sym
+#' @importFrom rmd.tzh label_pvalue_sym
 #' @method as_flextable pairwise.htest
 #' @export as_flextable.pairwise.htest
 #' @export
