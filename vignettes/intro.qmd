@@ -40,9 +40,23 @@ The `S3` method dispatch `as_flextable.matrix()` ..
 
 We do not want to override the functionality of `flextable:::as_flextable.table()`.
 
+
 ```{r}
-m = array(letters[1:6], dim = 2:3, dimnames = list(row = letters[1:2], col = LETTERS[1:3]))
-m |> as_flextable()
+array(1:6, dim = c(2L, 3L)) |>
+  as_flextable()
+```
+
+
+```{r}
+datasets::VADeaths |>
+  as_flextable()
+```
+
+
+```{r}
+vad = datasets::VADeaths
+names(dimnames(vad)) = c('Age Group', 'Location by Sex') 
+vad |> as_flextable()
 ```
 
 ## `data.frame`
@@ -64,6 +78,15 @@ datasets::Puromycin |>
 hline_by(i = ~ state + conc)
 ```
 
+### `highlight_by()`
+
+```{r}
+datasets::attitude |>
+  head(n = 10L) |>
+  highlight_by(i = learning > 55 | raises > 65, j = 'rating')
+```
+
+
 ### `format4flextable()`
 
 ```{r}
@@ -75,11 +98,16 @@ aml2 = aml |>
   })
 ```
 
-Function `flextable:::as_flextable.data.frame()` cannot process `matrix` columns, as of version `r packageVersion('flextable')`.
+Neither function `flextable:::as_flextable.data.frame()` nor `flextable::flextable()` could process `matrix` columns, as of version `r packageVersion('flextable')`.
 
 ```{r}
 tryCatch(as_flextable(aml2), error = identity)
 ```
+
+```{r}
+tryCatch(flextable(aml2), error = identity)
+```
+
 
 ```{r}
 aml2 |> 
