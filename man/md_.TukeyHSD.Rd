@@ -14,9 +14,9 @@ R Markdown Lines for \link[stats]{TukeyHSD}
 }
 \examples{
 m = aov(breaks ~ wool + tension, data = warpbreaks)
-library(rmd.tzh); list(
+list(
   'aov' = m,
   '`TukeyHSD`' = m |> TukeyHSD(which = 'tension', ordered = TRUE)
-) |> render_(file = 'aov_etc')
+) |> rmd.tzh::render_(file = 'aov_etc')
 }
 \keyword{internal}

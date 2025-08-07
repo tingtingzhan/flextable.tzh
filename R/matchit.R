@@ -54,10 +54,10 @@ as_flextable.summary.matchit <- function(x, ...) {
 #' @examples
 #' library(MatchIt)
 #' m = matchit(treat ~ age+educ+race+nodegree+married+re74+re75, data = lalonde)
-#' library(rmd.tzh); list(
+#' list(
 #'  '`matchit1`' = m,
 #'  '`matchit2`' = m |> summary(addlvariables = 're78')
-#' ) |> render_(file = 'matchit')
+#' ) |> rmd.tzh::render_(file = 'matchit')
 #' @keywords internal
 #' @name md_matchit
 #' @importFrom rmd.tzh md_

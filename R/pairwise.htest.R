@@ -41,13 +41,13 @@ as_flextable.pairwise.htest <- function(x, row.title = x$method, ...) {
 #' @param ... ..
 #' 
 #' @examples
-#' library(rmd.tzh); list(
+#' list(
 #'   '`pairwise.htest`' = airquality |> 
 #'     within.data.frame(expr = {
 #'       Month = factor(Month, labels = month.abb[5:9])
 #'     }) |>
 #'     with(expr = pairwise.t.test(Ozone, Month, pool.sd = FALSE, p.adj = 'none'))
-#' ) |> render_(file = 'pairwise.htest')
+#' ) |> rmd.tzh::render_(file = 'pairwise.htest')
 #' 
 #' @keywords internal
 #' @importFrom utils bibentry

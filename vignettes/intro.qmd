@@ -40,18 +40,15 @@ The `S3` method dispatch `as_flextable.matrix()` ..
 
 We do not want to override the functionality of `flextable:::as_flextable.table()`.
 
-
 ```{r}
 array(1:6, dim = c(2L, 3L)) |>
   as_flextable()
 ```
 
-
 ```{r}
 datasets::VADeaths |>
   as_flextable()
 ```
-
 
 ```{r}
 vad = datasets::VADeaths
@@ -86,7 +83,6 @@ datasets::attitude |>
   highlight_by(i = learning > 55 | raises > 65, j = 'rating')
 ```
 
-
 ### `format4flextable()`
 
 ```{r}
@@ -107,7 +103,6 @@ tryCatch(as_flextable(aml2), error = identity)
 ```{r}
 tryCatch(flextable(aml2), error = identity)
 ```
-
 
 ```{r}
 aml2 |> 
