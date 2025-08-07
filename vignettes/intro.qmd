@@ -236,11 +236,7 @@ m1 |> as_flextable(addlvariables = 're78')
 ```
 
 ```{r}
-m1 |> Sprintf.matchit()
-```
-
-```{r}
-m1 |> summary(addlvariables = 're78') |> Sprintf.summary.matchit()
+m1 |> summary(addlvariables = 're78')
 ```
 
 ```{r}

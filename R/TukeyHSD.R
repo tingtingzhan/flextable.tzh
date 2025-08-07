@@ -49,3 +49,57 @@ as_flextable.TukeyHSD <- function(x, ...) {
 
 
 
+
+
+#' @title R Markdown Lines for \link[stats]{TukeyHSD}
+#' 
+#' @param x,xnm,... ..
+#' 
+#' @examples
+#' m = aov(breaks ~ wool + tension, data = warpbreaks)
+#' library(rmd.tzh); list(
+#'   'aov' = m,
+#'   '`TukeyHSD`' = m |> TukeyHSD(which = 'tension', ordered = TRUE)
+#' ) |> render_(file = 'aov_etc')
+#' @keywords internal
+#' @importFrom utils bibentry
+#' @importFrom rmd.tzh md_
+#' @importClassesFrom rmd.tzh md_lines
+#' @export md_.TukeyHSD
+#' @export
+md_.TukeyHSD <- function(x, xnm, ...) {
+  
+  z1 <- 'Tukey Honest Significant Differences [HSD, @Tukey49] is provided using <u>**`R`**</u>.' |>
+    new(Class = 'md_lines', bibentry = bibentry(
+      bibtype = 'Article', key = 'Tukey49',
+      author = 'John W. Tukey',
+      journal = 'Biometrics',
+      number = '2',
+      pages = '99--114',
+      title = 'Comparing Individual Means in the Analysis of Variance',
+      volume = '5',
+      year = '1949',
+      doi = '10.2307/3001913'
+    ))
+  
+  z2 <- c(
+    '```{r}', 
+    '#| echo: false', 
+    xnm |> sprintf(fmt = 'as_flextable(%s)'), # flextable.tzh::as_flextable.TukeyHSD
+    '```'
+  ) |>
+    new(Class = 'md_lines')
+  
+  c(z1, z2) # ?rmd.tzh::c.md_lines
+  
+}
+
+
+
+
+
+
+
+
+
+

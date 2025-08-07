@@ -90,3 +90,31 @@ as_flextable.summary.aovlist <- function(x, ...) {
 
 
 
+
+#' @title R Markdown Lines for \link[stats]{aov}
+#' 
+#' @param x,xnm,... ..
+#' 
+#' @export md_.aov
+#' @export
+md_.aov <- function(x, xnm, ...) {
+  
+  z1 <- 'Analysis of variance is performed using <u>**`R`**</u>.' |>
+    new(Class = 'md_lines')
+  
+  z2 <- c(
+    '```{r}', 
+    '#| echo: false', 
+    xnm |> sprintf(fmt = 'as_flextable(%s)'), # flextable.tzh::as_flextable.aov
+    '```'
+  ) |>
+    new(Class = 'md_lines')
+  
+  c(z1, z2) # ?rmd.tzh::c.md_lines
+  
+}
+
+
+
+
+
