@@ -12,10 +12,10 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Encoding: UTF-8
 License: GPL-2
-Depends: R (>= 4.5), flextable (== 0.9.9)
+Depends: R (>= 4.5), flextable (== 0.9.10)
 Imports: methods, cli, officer (== 0.6.10), zoo (== 1.8.14), scales (== 1.4.0), rmd.tzh
 Suggests: 
-  MatchIt (== 4.7.2), 
-  survival (== 3.8.3), 
+  MatchIt, 
+  survival, 
   knitr, quarto, rmarkdown
 VignetteBuilder: quarto
