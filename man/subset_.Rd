@@ -2,9 +2,18 @@
 % Please edit documentation in R/subset_.R
 \name{subset_}
 \alias{subset_}
-\title{Inspect a Subset of \link[base]{data.frame}}
+\title{Alternative Subset of \link[base]{data.frame}}
 \usage{
-subset_(x, subset, select, select_pattern, avoid, avoid_pattern)
+subset_(
+  x,
+  subset,
+  select = character(),
+  select_rx = "?!",
+  avoid = character(),
+  avoid_rx = "?!",
+  preview = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{a \link[base]{data.frame}}
@@ -14,29 +23,39 @@ see function \link[base]{subset.data.frame}}
 
 \item{select}{\link[base]{character} \link[base]{vector},
 columns to be selected,
-see function \link[base]{subset.data.frame}}
+see function \link[base]{subset.data.frame}.
+Default is \code{character()}, indicating no variable to be selected in addition to those appear in \code{subset}.}
 
-\item{select_pattern}{regular expression \link[base]{regex}
-for multiple columns to be selected}
+\item{select_rx}{regular expression \link[base]{regex}
+for multiple columns to be selected.
+Default is the \href{https://en.wikipedia.org/wiki/Regular_expression#Assertions}{negative lookahead} \code{'?!'}}
 
 \item{avoid}{\link[base]{character} \link[base]{vector},
-columns to be avoided}
+columns to be avoided.
+Default is \code{character()}, indicating no variable to be avoid.
+The variables that appear in \code{subset} cannot be avoided.}
 
-\item{avoid_pattern}{regular expression \link[base]{regex},
-for multiple columns to be avoided}
+\item{avoid_rx}{regular expression \link[base]{regex},
+for multiple columns to be avoided
+Default is the \href{https://en.wikipedia.org/wiki/Regular_expression#Assertions}{negative lookahead} \code{'?!'}}
+
+\item{preview}{\link[base]{logical} scalar, whether to preview as a
+\link[flextable]{flextable}.  Default \code{FALSE}.}
+
+\item{...}{additional parameters, currently of no use}
 }
 \value{
 Function \code{\link[=subset_]{subset_()}} returns a \link[flextable]{flextable}.
 }
 \description{
-..
+An alternative subset method for \link[base]{data.frame}.
 }
 \details{
 Function \code{\link[=subset_]{subset_()}} is different from function
 \link[base]{subset.data.frame}, such that
 \itemize{
-\item {if both \code{select} and \code{select_pattern} are missing, only variables mentioned in \code{subset} are selected;}
-\item {be able to select all variables, except those in \code{avoid} and \code{avoid_pattern}.}
+\item {if both \code{select} and \code{select_rx} are missing, only variables mentioned in \code{subset} are selected;}
+\item {be able to select all variables, except those in \code{avoid} and \code{avoid_rx}.}
 }
 }
 \keyword{internal}

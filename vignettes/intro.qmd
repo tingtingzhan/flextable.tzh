@@ -254,15 +254,18 @@ m2 |> as_flextable(addlvariables = 're78')
 ## `subset_()`
 
 ```{r}
-subset_(trees, Girth > 9 & Height < 70)
+datasets::trees |>
+  subset_(Girth > 9 & Height < 70, preview = TRUE)
 ```
 
 ```{r}
-subset_(swiss, Fertility > 80, avoid = 'Catholic')
+datasets::swiss |> 
+  subset_(Fertility > 80, avoid = 'Infant.Mortality', preview = TRUE)
 ```
 
 ```{r}
-subset_(warpbreaks, wool == 'K')
+datasets::warpbreaks |> 
+  subset_(wool == 'K')
 ```
 
 ## `symmetric2flextable()`

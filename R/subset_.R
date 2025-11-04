@@ -1,9 +1,10 @@
 
-# this is a simplified version of experiment::SUBSET
+# this is a simplified version of tzh's experiment::::SUBSET
 
-#' @title Inspect a Subset of \link[base]{data.frame}
+#' @title Alternative Subset of \link[base]{data.frame}
 #' 
-#' @description ..
+#' @description 
+#' An alternative subset method for \link[base]{data.frame}.
 #' 
 #' @param x a \link[base]{data.frame}
 #' 
@@ -12,23 +13,33 @@
 #' 
 #' @param select \link[base]{character} \link[base]{vector},
 #' columns to be selected,
-#' see function \link[base]{subset.data.frame}
+#' see function \link[base]{subset.data.frame}.
+#' Default is `character()`, indicating no variable to be selected in addition to those appear in `subset`.
 #' 
-#' @param select_pattern regular expression \link[base]{regex}
-#' for multiple columns to be selected
+#' @param select_rx regular expression \link[base]{regex}
+#' for multiple columns to be selected. 
+#' Default is the [negative lookahead](https://en.wikipedia.org/wiki/Regular_expression#Assertions) `'?!'`
 #' 
 #' @param avoid \link[base]{character} \link[base]{vector},
-#' columns to be avoided
+#' columns to be avoided.
+#' Default is `character()`, indicating no variable to be avoid.
+#' The variables that appear in `subset` cannot be avoided.
 #' 
-#' @param avoid_pattern regular expression \link[base]{regex},
+#' @param avoid_rx regular expression \link[base]{regex},
 #' for multiple columns to be avoided
+#' Default is the [negative lookahead](https://en.wikipedia.org/wiki/Regular_expression#Assertions) `'?!'`
+#' 
+#' @param preview \link[base]{logical} scalar, whether to preview as a 
+#' \link[flextable]{flextable}.  Default `FALSE`.
+#' 
+#' @param ... additional parameters, currently of no use
 #' 
 #' @details 
 #' Function [subset_()] is different from function 
 #' \link[base]{subset.data.frame}, such that 
 #' \itemize{
-#' \item {if both `select` and `select_pattern` are missing, only variables mentioned in `subset` are selected;}
-#' \item {be able to select all variables, except those in `avoid` and `avoid_pattern`.}
+#' \item {if both `select` and `select_rx` are missing, only variables mentioned in `subset` are selected;}
+#' \item {be able to select all variables, except those in `avoid` and `avoid_rx`.}
 #' }
 #' 
 #' @returns
@@ -36,12 +47,13 @@
 #' 
 #' @keywords internal
 #' @importFrom flextable flextable autofit highlight vline
-#' @importFrom cli col_cyan style_bold
 #' @export
 subset_ <- function(
     x, subset, 
-    select, select_pattern, 
-    avoid, avoid_pattern
+    select = character(), select_rx = '?!', 
+    avoid = character(), avoid_rx = '?!', 
+    preview = FALSE,
+    ...
 ) {
   
   if (!is.data.frame(x)) stop('input must be \'data.frame\'')
@@ -49,44 +61,40 @@ subset_ <- function(
   
   nm <- names(x)
   .subset <- substitute(subset)
-
-  select <- c(
-    if (!missing(select)) select, 
-    if (!missing(select_pattern)) grepv(select_pattern, x = nm)
-  )
   
-  avoid <- c(
-    if (!missing(avoid)) avoid, 
-    if (!missing(avoid_pattern)) grepv(avoid_pattern, x = nm)
-  )
+  v_subset <- intersect(all.vars(.subset), nm)
   
-  var_subset <- intersect(all.vars(.subset), nm)
+  v_to_select <- c(select, grepv(select_rx, x = nm)) |>
+    unique.default()
   
-  var_sel <- if (!length(avoid)) {
-    c(var_subset, select)
-  } else if (!length(select)) {
-    # `avoid`, but no `select`
-    c(var_subset, setdiff(nm, avoid))
-  } else {
-    # `avoid`, `select`
-    setdiff(x = c(var_subset, select), y = avoid)
-  }
-  var_sel <- nm[sort.int(match(unique.default(var_sel), table = nm))] # in original order
+  v_after_avoid <- c(avoid, grepv(avoid_rx, x = nm)) |>
+    unique.default() |>
+    setdiff(x = v_to_select, y = _) # beautiful!!
   
-  rid <- which(eval(expr = .subset, envir = x)) # removes NA
+  id_sel <- c(v_subset, v_to_select, v_after_avoid) |> # beautiful!!
+    unique.default() |>
+    match(table = nm) |>
+    sort.int() # in original order
+  
+  rid <- .subset |> 
+    eval(envir = x) |>
+    which() # removes NA
   if (!length(rid)) {
     message('No subject satisfies that ', .subset |> deparse1() |> col_cyan() |> style_bold())
     return(invisible())
   }
   
+  ret <- x[rid, nm[id_sel], drop = FALSE]
+  if (!preview) return(ret)
+  
   data.frame(
     '_Excel_' = sprintf(fmt = 'Row %d', rid + 1L),
-    x[rid, var_sel, drop = FALSE],
+    ret,
     check.names = FALSE
   ) |>
     flextable() |>
     autofit(part = 'all') |>
     vline(j = 1L) |>
-    highlight(j = setdiff(var_subset, avoid), part = 'all')
+    highlight(j = v_subset, part = 'all')
   
 }
