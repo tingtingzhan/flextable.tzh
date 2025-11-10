@@ -6,7 +6,7 @@
 \usage{
 subset_(
   x,
-  subset,
+  subset = NULL,
   select = character(),
   select_rx = "?!",
   avoid = character(),

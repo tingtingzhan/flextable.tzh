@@ -49,7 +49,7 @@
 #' @importFrom flextable flextable autofit highlight vline
 #' @export
 subset_ <- function(
-    x, subset, 
+    x, subset = NULL, 
     select = character(), select_rx = '?!', 
     avoid = character(), avoid_rx = '?!', 
     preview = FALSE,
@@ -76,9 +76,17 @@ subset_ <- function(
     match(table = nm) |>
     sort.int() # in original order
   
-  rid <- .subset |> 
-    eval(envir = x) |>
-    which() # removes NA
+  rid <- if (!length(.subset)) {
+    # all rows
+    x |> 
+      .row_names_info(type = 2L) |>
+      seq_len()
+  } else {
+    .subset |> 
+      eval(envir = x) |>
+      which() # removes NA
+  }
+  
   if (!length(rid)) {
     message('No subject satisfies that ', .subset |> deparse1() |> col_cyan() |> style_bold())
     return(invisible())
