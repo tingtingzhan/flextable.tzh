@@ -14,7 +14,12 @@
 #' @param select \link[base]{character} \link[base]{vector},
 #' columns to be selected,
 #' see function \link[base]{subset.data.frame}.
-#' Default is `character()`, indicating no variable to be selected in addition to those appear in `subset`.
+#' Default is 
+#' \describe{
+#' \item{`character()`}{i.e., all variables in input `x`, if both parameters `avoid` and `avoid_rx` are missing;}
+#' \item{`names(x)`}{i.e., no variable (in addition to those appear in `subset`), if either `avoid` or `avoid_rx` is provided.}
+#' }
+#' 
 #' 
 #' @param select_rx regular expression \link[base]{regex}
 #' for multiple columns to be selected. 
@@ -50,7 +55,8 @@
 #' @export
 subset_ <- function(
     x, subset = NULL, 
-    select = character(), select_rx = '?!', 
+    select = if (missing(avoid) && missing(avoid_rx)) character() else names(x), 
+    select_rx = '?!', 
     avoid = character(), avoid_rx = '?!', 
     preview = FALSE,
     ...
@@ -67,11 +73,11 @@ subset_ <- function(
   v_to_select <- c(select, grepv(select_rx, x = nm)) |>
     unique.default()
   
-  v_after_avoid <- c(avoid, grepv(avoid_rx, x = nm)) |>
-    unique.default() |>
-    setdiff(x = v_to_select, y = _) # beautiful!!
+  v_avoid <- c(avoid, grepv(avoid_rx, x = nm)) |>
+    unique.default()
   
-  id_sel <- c(v_subset, v_to_select, v_after_avoid) |> # beautiful!!
+  id_sel <- c(v_subset, v_to_select) |>
+    setdiff(x = _, y = v_avoid) |> # beautiful!!
     unique.default() |>
     match(table = nm) |>
     sort.int() # in original order

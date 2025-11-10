@@ -7,7 +7,7 @@
 subset_(
   x,
   subset = NULL,
-  select = character(),
+  select = if (missing(avoid) && missing(avoid_rx)) character() else names(x),
   select_rx = "?!",
   avoid = character(),
   avoid_rx = "?!",
@@ -24,7 +24,11 @@ see function \link[base]{subset.data.frame}}
 \item{select}{\link[base]{character} \link[base]{vector},
 columns to be selected,
 see function \link[base]{subset.data.frame}.
-Default is \code{character()}, indicating no variable to be selected in addition to those appear in \code{subset}.}
+Default is
+\describe{
+\item{\code{character()}}{i.e., all variables in input \code{x}, if both parameters \code{avoid} and \code{avoid_rx} are missing;}
+\item{\code{names(x)}}{i.e., no variable (in addition to those appear in \code{subset}), if either \code{avoid} or \code{avoid_rx} is provided.}
+}}
 
 \item{select_rx}{regular expression \link[base]{regex}
 for multiple columns to be selected.
