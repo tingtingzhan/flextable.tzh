@@ -13,7 +13,7 @@ RoxygenNote: 7.3.3
 Encoding: UTF-8
 License: GPL-2
 Depends: R (>= 4.5), flextable (== 0.9.10)
-Imports: methods, cli, officer (== 0.7.0), zoo (== 1.8.14), scales (== 1.4.0), rmd.tzh
+Imports: methods, cli, officer (== 0.7.1), zoo (== 1.8.14), scales (== 1.4.0), rmd.tzh
 Suggests: 
   MatchIt, 
   survival, 
