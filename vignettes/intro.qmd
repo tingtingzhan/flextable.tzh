@@ -113,6 +113,14 @@ aml2 |>
   flextable()
 ```
 
+```{r}
+aml2 |> 
+  format4flextable() |> 
+  flextable() |>
+  hline_by(~ x)
+```
+
+
 ## `dist`
 
 The `S3` method dispatch `as_flextable.dist()` ..
