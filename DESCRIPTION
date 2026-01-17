@@ -13,9 +13,9 @@ RoxygenNote: 7.3.3
 Encoding: UTF-8
 License: GPL-2
 Depends: R (>= 4.5), flextable (== 0.9.10)
-Imports: methods, cli, officer (== 0.7.2), zoo (== 1.8.15), scales (== 1.4.0), rmd.tzh
+Imports: methods, cli, officer (== 0.7.3), zoo (== 1.8.15), scales (== 1.4.0), rmd.tzh
 Suggests: 
-  MatchIt, 
-  survival, 
+  MatchIt (== 4.7.2), 
+  survival (== 3.8.6), 
   knitr, quarto, rmarkdown
 VignetteBuilder: quarto
